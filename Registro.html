@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registro | Arx Digital</title>
+  <link rel="stylesheet" href="css/Registro.css">
+</head>
+<body>
+  <header>
+        <nav>
+        <a href="index.html">ARX DIGITAL</a> | 
+        <a href="index.html">Inicio</a> 
+        <a href="Soluciones.html">Soluciones</a> 
+        <a href="Recursos.html">Recursos</a> 
+        <a href="Nosotros.html">Nosotros</a> 
+        <a href="Contacto.html">Contacto</a>
+        </nav>
+    </header>
+  
+  <main class="registro">
+    <p class="marca">Arx <span>Digital</span></p>
+    <h1>Crea tu cuenta</h1>
+    <p class="subtitulo">Completa tus datos para registrarte.</p>
+
+    <form action="#" method="post">
+      <div class="campo">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+      </div>
+
+      <div class="campo">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" autocomplete="email" required>
+      </div>
+
+      <div class="campo">
+        <label for="clave">Contraseña</label>
+        <input type="password" id="clave" name="clave" autocomplete="new-password" minlength="8" required>
+        <p class="ayuda">Mínimo 8 caracteres.</p>
+      </div>
+
+      <div class="campo">
+        <label for="clave2">Confirmar contraseña</label>
+        <input type="password" id="clave2" name="clave2" autocomplete="new-password" minlength="8" required>
+      </div>
+
+      <div class="terminos">
+        <input type="checkbox" id="terminos" name="terminos" required>
+        <label for="terminos">Acepto los <a href="#">términos y condiciones</a>.</label>
+      </div>
+
+      <button type="submit">Crear cuenta</button>
+    </form>
+
+    <p class="pie">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+  </main>
+
+  <script>
+    // Verifica que ambas contraseñas coincidan
+    const clave = document.getElementById("clave");
+    const clave2 = document.getElementById("clave2");
+    function comparar() {
+      clave2.setCustomValidity(clave.value === clave2.value ? "" : "Las contraseñas no coinciden.");
+    }
+    clave.addEventListener("input", comparar);
+    clave2.addEventListener("input", comparar);
+  </script>
+    <footer>
+        <p><strong>ARX DIGITAL</strong></p>
+        
+        <p>Redes Sociales: <a href="#">Facebook</a> | <a href="#">LinkedIn</a> | <a href="#">YouTube</a> | <a href="#">Instagram</a></p>
+
+        <p>
+            <a href="index.html">Inicio</a> |
+            <a href="#">Soluciones</a> |
+            <a href="#">Recursos</a> |
+            <a href="#">Nosotros</a> |
+            <a href="#">Contacto</a>
+        </p>
+
+        <p>
+            <a href="#">Política de Privacidad</a> |
+            <a href="#">Términos de Uso</a> |
+            <a href="#">Contacto</a>
+        </p>
+
+        <p>&copy; 2026 ARX DIGITAL. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
