@@ -439,4 +439,124 @@ footer a:hover {
 
         font-size: 0.85rem;
     }
+}/* ================================================= */
+/* ESTILOS DEL MODAL DE TÉRMINOS Y CONDICIONES       */
+/* ================================================= */
+
+/* Ocultar el checkbox que activa el modal sin JavaScript */
+.modal-trigger-checkbox {
+  display: none;
+}
+
+/* Estado inicial del fondo oscuro (oculto) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+}
+
+/* Mostrar el modal cuando el checkbox oculto está marcado */
+.modal-trigger-checkbox:checked ~ .modal {
+  display: block;
+}
+
+/* Caja principal del modal adaptada a tu diseño */
+.modal-content {
+  background-color: #ffffff;
+  margin: 6% auto;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #e3e3e3;
+  width: 90%;
+  max-width: 550px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: relative;
+  animation: modalFadeIn 0.25s ease-in-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Botón de cierre (X) */
+.close-btn {
+  color: #777777;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #111111;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #222222;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.modal-subtitle {
+  font-size: 0.85rem;
+  color: #777777;
+  margin-bottom: 20px;
+}
+
+/* Contenedor con scroll para el texto legal */
+.modal-body {
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 8px;
+  text-align: left;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 20px;
+}
+
+.modal-body h3 {
+  font-size: 0.95rem;
+  color: #222222;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.modal-body p {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #555555;
+  margin-bottom: 10px;
+}
+
+.modal-footer {
+  text-align: right;
+}
+
+/* Botón dentro del modal para aceptar y cerrar */
+.btn-accept {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #222222;
+  color: #ffffff;
+  border: 1px solid #222222;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-accept:hover {
+  background: #444444;
 }
