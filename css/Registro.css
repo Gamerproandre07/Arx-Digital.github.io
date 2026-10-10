@@ -443,12 +443,24 @@ footer a:hover {
 /* ESTILOS DEL MODAL DE TÉRMINOS Y CONDICIONES       */
 /* ================================================= */
 
-/* Ocultar el checkbox que activa el modal sin JavaScript */
+/* Ocultar por completo el checkbox que activa el modal */
 .modal-trigger-checkbox {
-  display: none;
+  display: none !important;
 }
 
-/* Estado inicial del fondo oscuro (oculto) */
+/* Estilo para que el texto de los términos luzca como un enlace interactivo */
+.terminos-link-click {
+  color: #444444;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.terminos-link-click:hover {
+  color: #111111;
+}
+
+/* Estado inicial del fondo oscuro (completamente oculto) */
 .modal {
   display: none;
   position: fixed;
@@ -461,12 +473,12 @@ footer a:hover {
   backdrop-filter: blur(3px);
 }
 
-/* Mostrar el modal cuando el checkbox oculto está marcado */
+/* Muestra el modal en forma de ventana flotante cuando se marca el checkbox oculto */
 .modal-trigger-checkbox:checked ~ .modal {
   display: block;
 }
 
-/* Caja principal del modal adaptada a tu diseño */
+/* Caja principal flotante del modal */
 .modal-content {
   background-color: #ffffff;
   margin: 6% auto;
@@ -514,7 +526,7 @@ footer a:hover {
   margin-bottom: 20px;
 }
 
-/* Contenedor con scroll para el texto legal */
+/* Contenedor con barra desplazamiento interna para el texto legal */
 .modal-body {
   max-height: 250px;
   overflow-y: auto;
@@ -543,7 +555,7 @@ footer a:hover {
   text-align: right;
 }
 
-/* Botón dentro del modal para aceptar y cerrar */
+/* Botón inferior para aceptar y cerrar */
 .btn-accept {
   display: inline-block;
   padding: 10px 18px;
@@ -555,6 +567,10 @@ footer a:hover {
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s ease;
+}
+
+.btn-accept:hover {
+  background: #444444;
 }
 
 .btn-accept:hover {
