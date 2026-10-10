@@ -576,3 +576,15 @@ footer a:hover {
 .btn-accept:hover {
   background: #444444;
 }
+/* Estilo para que el texto de los términos luzca como un enlace subrayado */
+.terms-link-click {
+  color: #444444;
+  font-weight: 500;
+  text-decoration: underline; /* <--- Esto hace que salga subrayado */
+  cursor: pointer;
+}
+
+.terms-link-click:hover {
+  color: #111111;
+  text-decoration: underline;
+}
