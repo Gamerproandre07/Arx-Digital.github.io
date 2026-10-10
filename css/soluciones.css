@@ -86,10 +86,10 @@ section { margin-block: 76px; }
 }
 .solution-image-container img {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 260px;
     object-fit: cover;
-    max-height: 320px;
+    object-position: center;
+    display: block;
 }
 
 .cta h2 { font-size: 25px; }
