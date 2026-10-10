@@ -44,12 +44,49 @@
         <label for="clave2">Confirmar contraseña</label>
         <input type="password" id="clave2" name="clave2" autocomplete="new-password" minlength="8" required>
       </div>
+      <!-- Checkbox oculto que controla la apertura del modal -->
+<input type="checkbox" id="modal-toggle" class="modal-trigger-checkbox">
 
-      <div class="terminos">
-        <input type="checkbox" id="terminos" name="terminos" required>
-        <label for="terminos">Acepto los <a href="#">términos y condiciones</a>.</label>
-      </div>
+<!-- Grupo de términos en el formulario -->
+<div class="terms-group">
+  <input type="checkbox" id="acepto-terminos" required>
+  <label for="acepto-terminos">
+    Acepto los <label for="modal-toggle" class="terms-link">Términos y Condiciones</label>
+  </label>
+</div>
 
+<!-- Ventana Modal de Términos y Condiciones -->
+<div class="modal">
+  <div class="modal-content">
+    <!-- El "label" con la clase close-btn funciona como botón de cierre -->
+    <label for="modal-toggle" class="close-btn">&times;</label>
+    
+    <h2>Términos y Condiciones de Uso</h2>
+    <p class="modal-subtitle">ARX DIGITAL — Última actualización: Octubre 2026</p>
+    
+    <div class="modal-body">
+      <h3>1. Aceptación de los Términos</h3>
+      <p>Al registrarse y crear una cuenta en ARX DIGITAL, el usuario acepta de manera íntegra y sin reservas los presentes Términos y Condiciones. Si no está de acuerdo con alguna disposición, deberá abstenerse de utilizar la plataforma.</p>
+
+      <h3>2. Servicios y Uso Autorizado</h3>
+      <p>ARX DIGITAL proporciona soluciones informáticas, herramientas de desarrollo y recursos digitales. El usuario se compromete a hacer un uso adecuado, legal y ético de la plataforma.</p>
+
+      <h3>3. Registro de Cuenta y Seguridad</h3>
+      <p>El usuario es responsable de mantener la confidencialidad de sus credenciales de acceso y de todas las actividades realizadas desde su cuenta.</p>
+
+      <h3>4. Protección de Datos Personales</h3>
+      <p>Los datos ingresados se procesarán conforme a nuestras normativas de privacidad vigentes, garantizando su uso exclusivo para la gestión de servicios en ARX DIGITAL.</p>
+
+      <h3>5. Modificaciones</h3>
+      <p>ARX DIGITAL se reserva el derecho de actualizar o modificar estos términos en cualquier momento notificándolo a través de la plataforma.</p>
+    </div>
+
+    <div class="modal-footer">
+      <label for="modal-toggle" class="btn-accept">Entendido y Cerrar</label>
+    </div>
+  </div>
+</div>
+<br>
       <button type="submit">Crear cuenta</button>
     </form>
 
