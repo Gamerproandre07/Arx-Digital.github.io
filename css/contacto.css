@@ -282,7 +282,6 @@ footer p:last-child {
     text-decoration: underline;
 }
 
-/* Estilos para la Modal generada por JavaScript */
 .modal-overlay {
     display: flex;
     position: fixed;
@@ -331,21 +330,6 @@ footer p:last-child {
     color: var(--ink);
 }
 
-/* Animación de entrada de la página */
-@keyframes fadeInSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-body {
-    animation: fadeInSlideUp 0.6s ease-out forwards;
-}
 
 @media (max-width: 850px) {
     header nav {
