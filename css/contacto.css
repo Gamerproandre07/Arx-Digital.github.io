@@ -386,3 +386,55 @@ footer p:last-child {
         transition: none;
     }
 }
+/* Estilo para los enlaces de apertura */
+.open-modal-link {
+  color: #0066cc;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Ocultar los checkboxes de control */
+.modal-toggle {
+  display: none;
+}
+
+/* Fondo oscuro de las modales */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Abrir la modal correspondiente al marcar el checkbox */
+#modal-privacidad:checked ~ .modal-privacidad-box,
+#modal-terminos:checked ~ .modal-terminos-box {
+  display: flex;
+}
+
+/* Contenido de la modal */
+.modal-content {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Botón de cerrar */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 24px;
+  cursor: pointer;
+}
