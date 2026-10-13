@@ -3,7 +3,7 @@ Todos los integrantes implicados en el grupo no son responsables de el mal uso d
 
 
 -----------------------------------------------------------------------------------------------------
-                        JEANPIEREG - GRUPO DE DESARROLLO WEB - 3ER CICLO
+                        Jean Piere Guzmán - GRUPO DE DESARROLLO WEB - 3ER CICLO
 -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
                         Andre Torres - GRUPO DE DESARROLLO WEB - 3ER CICLO
