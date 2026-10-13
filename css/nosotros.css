@@ -80,3 +80,17 @@ section { margin-block: 76px; }
 .avatar { display: grid; place-items: center; width: 44px; height: 44px; background: #efefed; border-radius: 50%; margin-bottom: 22px; font-size: 13px; font-weight: 700; }
 .team h3 { font-size: 18px; }
 @media(max-width: 850px) { .about-intro { grid-template-columns: 1fr; gap: 25px; } }
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+}
