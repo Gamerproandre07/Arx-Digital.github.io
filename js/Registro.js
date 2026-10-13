@@ -224,3 +224,22 @@ document.addEventListener("DOMContentLoaded", function () {
         mensajeFormulario.className = "mensaje-formulario mensaje-exito";
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const clave = document.getElementById("clave");
+    const clave2 = document.getElementById("clave2");
+
+    // Verificamos que los campos existan en la página antes de agregar los eventos
+    if (clave && clave2) {
+        function comparar() {
+            if (clave.value !== clave2.value) {
+                clave2.setCustomValidity("Las contraseñas no coinciden.");
+            } else {
+                clave2.setCustomValidity("");
+            }
+        }
+
+        // Escuchamos el evento 'input' mientras el usuario escribe en cualquiera de los dos campos
+        clave.addEventListener("input", comparar);
+        clave2.addEventListener("input", comparar);
+    }
+});
