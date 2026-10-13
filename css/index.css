@@ -124,3 +124,17 @@ main > section > h2 { font-size: 34px; }
 @media(max-width: 850px) { .home-cover { grid-template-columns: 1fr; padding-top: 40px; gap: 32px; }.hero h1 { font-size: clamp(36px,6vw,52px); max-width: 650px; }.hero .actions { flex-direction: row; align-items: center; }.hero-art { min-height: 360px; }.audiences .card { display: grid; grid-template-columns: 100px 1fr; }.audiences .visual { padding: 24px 0 0 24px; justify-content: start; }.audiences .card-body { padding-top: 25px; }.audiences h3, .audiences .card-body p { min-height: 0; }.news { grid-template-columns: 1fr 150px; gap: 20px; }.cta .actions { flex-direction: row; }.cases .two { grid-template-columns: 1fr; } }
 @media(max-width:560px) { main > section { margin-block: 52px; } main > section > h2 { font-size: 28px; }.hero h1 { font-size: 36px; }.hero .actions { gap: 18px; }.hero-art { min-height: 330px; }.orbit { width: 165px; height: 165px; }.orbit svg { width: 90px; height: 90px; }.signal-one { top: 75px; }.signal-two { bottom: 92px; }.signal-three { bottom: 62px; }.art-caption { font-size: 10px; bottom: 20px; }.alerts { padding: 23px 18px; }.news { grid-template-columns: 1fr; padding: 20px; }.news .visual { min-height: 120px; flex-direction: row; }.news h3 { font-size: 20px; }.cases .card { grid-template-columns: 80px 1fr; }.cases .visual { padding: 12px; }.cases .card-body { padding-left: 18px; }.audiences .card { grid-template-columns: 80px 1fr; }.audiences .visual { padding-left: 16px; }.audiences .visual svg { width: 40px; height: 40px; padding: 8px; }.audiences .card-body { padding: 23px 17px; }.audiences h3 { font-size: 20px; }.cta { padding: 28px; }.cta h2 { font-size: 28px; }.cta .actions { flex-direction: column; width: 100%; } }
 @media(prefers-reduced-motion:reduce) { .audiences .card { transition:none; }.audiences .card:hover { transform:none; } }
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+}
