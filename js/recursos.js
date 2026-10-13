@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let filtroActual = "todos";
     let textoBusqueda = "";
 
-    // Función principal para filtrar las tarjetas en pantalla
     function filtrarRecursos() {
         let contadorVisibles = 0;
 
@@ -25,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Mostrar u ocultar mensaje de "sin resultados"
         if (contadorVisibles === 0) {
             mensajeSinResultados.hidden = false;
         } else {
@@ -33,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 1. Evento para la barra de búsqueda en tiempo real
     if (inputBuscar) {
         inputBuscar.addEventListener("input", (e) => {
             textoBusqueda = e.target.value.trim().toLowerCase();
@@ -41,10 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 2. Evento para los botones de filtros (Todos, Guías, Checklists)
     botonesFiltro.forEach(boton => {
         boton.addEventListener("click", () => {
-            // Cambiar clase activa y atributo aria-pressed
             botonesFiltro.forEach(b => {
                 b.classList.remove("active");
                 b.setAttribute("aria-pressed", "false");
@@ -53,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
             boton.classList.add("active");
             boton.setAttribute("aria-pressed", "true");
 
-            // Obtener el tipo de filtro seleccionado
             filtroActual = boton.getAttribute("data-filter");
             filtrarRecursos();
         });
