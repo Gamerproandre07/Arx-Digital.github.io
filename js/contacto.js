@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modalBox.className = "modal-content";
         modalBox.innerHTML = htmlContenido;
 
-        // Botón de la X opcional por si el usuario de todas formas desea presionarlo
+        // Botón de la X opcional
         const closeBtn = document.createElement("span");
         closeBtn.className = "close-btn";
         closeBtn.innerHTML = "&times;";
@@ -73,6 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // NUEVO: Cerrar la modal al presionar la tecla ESC
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            cerrarModal();
+        }
+    });
+
     // Eventos de clic en los enlaces del footer
     if (btnPrivacidad) {
         btnPrivacidad.addEventListener("click", () => abrirModal(contenidoPrivacidad));
@@ -80,5 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (btnTerminos) {
         btnTerminos.addEventListener("click", () => abrirModal(contenidoTerminos));
+    }
+}) ;overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+        cerrarModal();
     }
 });
