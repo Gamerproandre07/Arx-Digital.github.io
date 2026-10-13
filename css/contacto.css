@@ -385,78 +385,84 @@ footer p:last-child {
     form button {
         transition: none;
     }
-/* Ocultar permanentemente los checkboxes de control */
+/* Ocultar totalmente los checkboxes de control sin excepciones */
 input.modal-toggle {
-  display: none !important;
+    position: absolute !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    display: none !important;
 }
 
-/* Estilo para los enlaces de apertura en el footer */
+/* Estilo para los enlaces de apertura */
 .open-modal-link {
-  color: var(--muted);
-  font-size: 13px;
-  cursor: pointer;
-  text-decoration: none;
+    color: var(--muted);
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .open-modal-link:hover {
-  color: var(--ink);
-  text-decoration: underline;
+    color: var(--ink);
+    text-decoration: underline;
 }
 
-/* Overlay / Fondo oscuro de las modales */
+/* Fondo oscuro de las modales (Ocultas por defecto) */
 .modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.65);
-  z-index: 9999;
-  justify-content: center;
-  align-items: center;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Abrir la modal según el checkbox seleccionado */
+/* Mostrar la modal correspondiente cuando su checkbox esté marcado */
 #modal-privacidad:checked ~ .modal-privacidad-box,
 #modal-terminos:checked ~ .modal-terminos-box {
-  display: flex;
+    display: flex !important;
 }
 
-/* Caja de contenido modal */
+/* Contenido de la ventana modal */
 .modal-content {
-  background-color: #ffffff;
-  padding: 32px;
-  border-radius: var(--radius);
-  max-width: 650px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: var(--radius);
+    max-width: 650px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Subtítulo dentro de la modal */
+/* Subtítulo de la modal */
 .modal-subtitle {
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 20px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
 }
 
 /* Botón de cerrar (X) */
 .close-btn {
-  position: absolute;
-  top: 16px;
-  right: 20px;
-  font-size: 28px;
-  line-height: 1;
-  color: var(--muted);
-  cursor: pointer;
-  user-select: none;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
 }
 
 .close-btn:hover {
-  color: var(--ink);
+    color: var(--ink);
 }
