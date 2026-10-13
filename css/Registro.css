@@ -588,70 +588,41 @@ footer a:hover {
   color: #111111;
   text-decoration: underline;
 }
-}
-/* Estilo para los enlaces de apertura */
-.open-modal-link {
-  color: #0066cc;
-  cursor: pointer;
-  text-decoration: underline;
+
+.campo {
+    position: relative; /* Asegura que el botón absoluto se posicione respecto al campo */
 }
 
-/* Ocultar los checkboxes de control */
-.modal-toggle {
-  display: none;
+.campo input[type="password"],
+.campo input[type="text"] {
+    padding-right: 40px; /* Deja espacio para que el texto no se superponga con el ícono del ojo */
+    box-sizing: border-box;
 }
 
-/* Fondo oscuro de las modales */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
+.toggle-visibilidad {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #666666;
+    font-size: 1rem;
+    padding: 0;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
 }
 
-/* Abrir la modal correspondiente al marcar el checkbox */
-#modal-privacidad:checked ~ .modal-privacidad-box,
-#modal-terminos:checked ~ .modal-terminos-box {
-  display: flex;
+.toggle-visibilidad:hover {
+    background: transparent;
+    color: #111111;
 }
 
-/* Contenido de la modal */
-.modal-content {
-  background-color: #ffffff;
-  padding: 24px;
-  border-radius: 8px;
-  max-width: 600px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  position: relative;
-}
-
-/* Botón de cerrar */
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 24px;
-  cursor: pointer;
-}
-@keyframes fadeInSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-body {
-    animation: fadeInSlideUp 0.6s ease-out forwards;
+.toggle-visibilidad:active {
+    background: transparent;
 }
