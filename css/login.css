@@ -477,3 +477,17 @@ footer p:last-child {
   font-size: 24px;
   cursor: pointer;
 }
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+}
