@@ -202,7 +202,6 @@ form textarea:focus {
     outline: none;
 }
 
-
 form p:last-child {
     margin-top: 28px;
     margin-bottom: 0;
@@ -263,7 +262,6 @@ footer p {
 }
 
 /* Copyright */
-
 footer p:last-child {
     margin: 25px 0 0;
     padding-block: 25px;
@@ -271,173 +269,69 @@ footer p:last-child {
     font-size: 11px;
 }
 
-@media (max-width: 850px) {
-
-    header nav {
-        min-height: auto;
-        justify-content: center;
-        gap: 19px;
-        padding-block: 20px;
-    }
-
-    header nav a:first-child {
-        width: 100%;
-        margin-right: 0;
-        text-align: center;
-    }
-
-    main {
-        width: 88%;
-    }
-
-    main section:first-child {
-        margin-top: 50px;
-    }
-
-    main section:nth-child(2) {
-        max-width: 100%;
-    }
-
-    form {
-        padding: 28px;
-    }
-
-    footer {
-        padding-inline: 6%;
-    }
-}
-
-@media (max-width: 560px) {
-
-    header nav {
-        width: 90%;
-        gap: 12px;
-    }
-
-    header nav a {
-        font-size: 12px;
-    }
-
-    main {
-        width: 90%;
-    }
-
-    main section {
-        margin-block: 50px;
-    }
-
-    main section:first-child {
-        margin-top: 42px;
-        margin-bottom: 40px;
-    }
-
-    h1 {
-        font-size: clamp(30px, 8vw, 38px);
-    }
-
-    h2 {
-        font-size: 25px;
-    }
-
-    main section:first-child p {
-        font-size: 15px;
-    }
-
-    form {
-        padding: 22px 18px;
-    }
-
-    form p {
-        margin-bottom: 20px;
-    }
-
-    form input,
-    form textarea {
-        font-size: 16px;
-    }
-
-    form button {
-        width: 100%;
-    }
-
-    footer {
-        margin-top: 55px;
-        padding: 30px 5% 0;
-    }
-
-    footer p {
-        line-height: 2;
-    }
-
-    footer p:last-child {
-        line-height: 1.65;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    html {
-        scroll-behavior: auto;
-    }
-
-    form input,
-    form textarea,
-    form button {
-        transition: none;
-    }
-}
-/* Estilo para los enlaces de apertura */
+/* Estilo para los enlaces interactivos que abren las modales */
 .open-modal-link {
-  color: #0066cc;
-  cursor: pointer;
-  text-decoration: underline;
+    color: var(--muted);
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-/* Ocultar los checkboxes de control */
-.modal-toggle {
-  display: none;
+.open-modal-link:hover {
+    color: var(--ink);
+    text-decoration: underline;
 }
 
-/* Fondo oscuro de las modales */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
+/* Estilos para la Modal generada por JavaScript */
+.modal-overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Abrir la modal correspondiente al marcar el checkbox */
-#modal-privacidad:checked ~ .modal-privacidad-box,
-#modal-terminos:checked ~ .modal-terminos-box {
-  display: flex;
-}
-
-/* Contenido de la modal */
 .modal-content {
-  background-color: #ffffff;
-  padding: 24px;
-  border-radius: 8px;
-  max-width: 600px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  position: relative;
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: var(--radius);
+    max-width: 650px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Botón de cerrar */
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 24px;
-  cursor: pointer;
+.modal-subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
 }
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 28px;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+}
+
+.close-btn:hover {
+    color: var(--ink);
+}
+
+/* Animación de entrada de la página */
 @keyframes fadeInSlideUp {
     from {
         opacity: 0;
@@ -451,4 +345,39 @@ footer p:last-child {
 
 body {
     animation: fadeInSlideUp 0.6s ease-out forwards;
+}
+
+@media (max-width: 850px) {
+    header nav {
+        min-height: auto;
+        justify-content: center;
+        gap: 19px;
+        padding-block: 20px;
+    }
+    header nav a:first-child {
+        width: 100%;
+        margin-right: 0;
+        text-align: center;
+    }
+    main { width: 88%; }
+    main section:first-child { margin-top: 50px; }
+    main section:nth-child(2) { max-width: 100%; }
+    form { padding: 28px; }
+    footer { padding-inline: 6%; }
+}
+
+@media (max-width: 560px) {
+    header nav { width: 90%; gap: 12px; }
+    header nav a { font-size: 12px; }
+    main { width: 90%; }
+    main section { margin-block: 50px; }
+    main section:first-child { margin-top: 42px; margin-bottom: 40px; }
+    h1 { font-size: clamp(30px, 8vw, 38px); }
+    h2 { font-size: 25px; }
+    main section:first-child p { font-size: 15px; }
+    form { padding: 22px 18px; }
+    form p { margin-bottom: 20px; }
+    form input, form textarea { font-size: 16px; }
+    form button { width: 100%; }
+    footer { margin-top: 55px; padding: 30px 5% 0; }
 }
