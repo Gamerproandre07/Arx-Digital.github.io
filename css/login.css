@@ -491,3 +491,143 @@ footer p:last-child {
 body {
     animation: fadeInSlideUp 0.6s ease-out forwards;
 }
+
+/* Modal para cambiar contraseña */
+
+.password-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.65);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.password-modal.active {
+    display: flex;
+}
+
+.password-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    background: #fff;
+    border-radius: 0;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    animation: passwordAppear 0.25s ease;
+}
+
+.password-modal-content h2 {
+    margin: 10px 0;
+    text-align: center;
+    color: #1e293b;
+}
+
+.password-subtitle {
+    margin-bottom: 25px;
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.password-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: none;
+    background: transparent;
+    color: #64748b;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.password-modal-content .input-group {
+    margin-bottom: 18px;
+}
+
+.password-modal-content .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.password-modal-content .input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #999;
+    border-radius: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    outline: none;
+}
+
+.password-modal-content .input-group input:focus {
+    border-color: #000;
+    box-shadow: 0 0 0 1px #000;
+}
+
+#passwordModal .btn-submit {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid #000;
+    border-radius: 0;
+    background: #000;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#passwordModal .btn-submit:hover {
+    background: #333;
+}
+
+
+#passwordModal .btn-cancel {
+    width: 100%;
+    margin-top: 10px;
+    padding: 11px;
+    border: 1px solid #000;
+    border-radius: 0;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+}
+
+#passwordModal .btn-cancel:hover {
+    background: #eee;
+}
+
+.password-error {
+    color: #dc2626;
+    font-size: 14px;
+}
+
+.password-success {
+    color: #15803d;
+    font-size: 14px;
+}
+
+@keyframes passwordAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .password-modal-content {
+        padding: 25px 20px;
+    }
+}
