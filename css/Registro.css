@@ -554,6 +554,11 @@ nav a:hover, nav a[aria-current] { color: #00798c; }
 input[type="checkbox"] { accent-color: #007c99; }
 /* Tamaño del logo, sin alterar los contenedores existentes. */
 .arx-logo { display: inline-block; width: 120px; height: 80px; object-fit: contain; vertical-align: middle; }
+.container {
+    width: min(1120px, 88%);
+    margin-inline: auto;
+}
+
 .site-header {
     background-color: #ffffff;
     border-bottom: 1px solid #00bfc5;
@@ -566,6 +571,8 @@ input[type="checkbox"] { accent-color: #007c99; }
     align-items: center;
     justify-content: space-between;
     gap: 24px;
+    width: min(1120px, 88%);
+    margin-inline: auto; 
 }
 
 .brand {
@@ -611,7 +618,7 @@ nav a[aria-current] {
     text-underline-offset: 8px;
 }
 
-/* Estilo para el botón de 'Acceso' (Último elemento del menú) */
+/* Estilo para el botón de 'Acceso' */
 nav a:last-child {
     color: #073568;
     border: 1px solid #073568;
@@ -628,7 +635,7 @@ nav a:last-child:hover {
     text-decoration: none;
 }
 
-/* Adaptación Responsive para Móviles y Tabletas */
+/* Adaptación Responsive */
 @media (max-width: 850px) {
     .nav-wrap {
         flex-direction: column;
@@ -639,15 +646,5 @@ nav a:last-child:hover {
     nav {
         gap: 16px;
         justify-content: center;
-    }
-}
-
-@media (max-width: 560px) {
-    nav {
-        gap: 12px;
-    }
-
-    nav a {
-        font-size: 13px;
     }
 }
