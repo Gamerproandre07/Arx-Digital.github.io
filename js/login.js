@@ -235,8 +235,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         recoveryEmailMessage.textContent =
-            "El formulario está listo, pero falta conectar el servicio " +
-            "que envía y verifica el código de recuperación.";
+            "No hay conexion con la base de datos " +
+            "No se puede enviar el codigo de verficación.";
 
         recoveryEmailMessage.classList.add("password-error");
     });
@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         passwordMessage.textContent =
             "Las contraseñas coinciden, pero falta conectarlas " +
-            "al sistema seguro para guardar la contraseña.";
+            "a la base de datos para guardar la contraseña.";
 
         passwordMessage.classList.add("password-error");
     });
