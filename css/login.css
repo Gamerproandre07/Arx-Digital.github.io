@@ -633,3 +633,249 @@ nav a:hover, nav a[aria-current] { color: #00798c; }
 .hero-link, .card-link, .text-link, .forgot-password, .pie a, .register-redirect a { color: #006b99; }
 input[type="checkbox"] { accent-color: #007c99; }
 .arx-logo { display: inline-block; width: 120px; height: 80px; object-fit: contain; vertical-align: middle; }
+
+.password-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.password-modal.active {
+    display: flex;
+}
+
+/* Contenedor de ambos modales */
+.password-modal-content {
+    position: relative;
+
+    width: 100%;
+    max-width: 420px;
+
+    padding: 35px;
+
+    background: #fff;
+    border-radius: 0;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+
+    box-sizing: border-box;
+
+    animation: passwordAppear 0.25s ease;
+}
+
+/* Títulos */
+.password-modal-content h2 {
+    margin: 10px 0;
+
+    text-align: center;
+    color: #073568;
+
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* Texto descriptivo */
+.password-subtitle {
+    margin-bottom: 25px;
+
+    text-align: center;
+    color: #526779;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Botón de cerrar */
+.password-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #526779;
+    font-size: 30px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.password-close:hover {
+    color: #073568;
+}
+
+/* Grupos de campos */
+.password-modal-content .input-group {
+    margin-bottom: 18px;
+}
+
+.password-modal-content .input-group label {
+    display: block;
+    margin-bottom: 8px;
+
+    color: #073568;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Campos de correo y contraseña */
+.password-modal-content .input-group input {
+    display: block;
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #637b8b;
+    border-radius: 0;
+
+    background: #fff;
+    color: #243746;
+
+    box-sizing: border-box;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.password-modal-content .input-group input::placeholder {
+    color: #8798a5;
+}
+
+.password-modal-content .input-group input:focus {
+    border-color: #073568;
+    box-shadow: 0 0 0 2px rgba(7, 53, 104, 0.12);
+}
+
+/* Botón principal: ambos modales */
+.password-modal-content .btn-submit {
+    display: block;
+    width: 100%;
+
+    margin-top: 10px;
+    padding: 12px;
+
+    border: 1px solid #073568;
+    border-radius: 0;
+
+    background: #073568;
+    color: #fff;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.password-modal-content .btn-submit:hover {
+    background: #075781;
+    border-color: #075781;
+}
+
+.password-modal-content .btn-submit:focus-visible,
+.password-modal-content .btn-cancel:focus-visible,
+.password-close:focus-visible {
+    outline: 2px solid #00bfc5;
+    outline-offset: 3px;
+}
+
+/* Botón cancelar */
+.password-modal-content .btn-cancel {
+    display: block;
+    width: 100%;
+
+    margin-top: 10px;
+    padding: 11px;
+
+    border: 1px solid #073568;
+    border-radius: 0;
+
+    background: #fff;
+    color: #073568;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.password-modal-content .btn-cancel:hover {
+    background: #edf8fa;
+}
+
+/* Mensajes de estado */
+#passwordMessage,
+#recoveryEmailMessage {
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.password-error {
+    color: #dc2626;
+}
+
+.password-success {
+    color: #15803d;
+}
+
+/* Animación de entrada */
+@keyframes passwordAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Adaptación a móviles */
+@media (max-width: 480px) {
+    .password-modal {
+        padding: 15px;
+    }
+
+    .password-modal-content {
+        padding: 30px 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .password-modal-content h2 {
+        font-size: 22px;
+    }
+}
+
+/* Accesibilidad: reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .password-modal-content {
+        animation: none;
+    }
+
+    .password-modal-content .btn-submit,
+    .password-modal-content .btn-cancel,
+    .password-modal-content .input-group input {
+        transition: none;
+    }
+}
