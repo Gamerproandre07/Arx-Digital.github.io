@@ -30,6 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
+// 3. ANIMACIÓN INICIAL DE SECCIONES
+// ==========================================
+if (!reducirMovimiento) {
+    elementosAnimados.forEach((elemento, indice) => {
+        elemento.classList.add("arx-aparecer");
+
+        elemento.style.animationDelay =
+            `${Math.min(indice * 0.08, 0.4)}s`;
+    });
+}
+
+    // ==========================================
     // 4. ANIMACIÓN INICIAL DE SECCIONES
     // ==========================================
     if (!reducirMovimiento) {
