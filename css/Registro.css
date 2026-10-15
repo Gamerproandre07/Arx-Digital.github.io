@@ -554,7 +554,6 @@ nav a:hover, nav a[aria-current] { color: #00798c; }
 input[type="checkbox"] { accent-color: #007c99; }
 /* Tamaño del logo, sin alterar los contenedores existentes. */
 .arx-logo { display: inline-block; width: 120px; height: 80px; object-fit: contain; vertical-align: middle; }
-
 .site-header {
     background-color: #ffffff;
     border-bottom: 1px solid #00bfc5;
