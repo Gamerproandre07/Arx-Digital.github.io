@@ -220,8 +220,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         evento.preventDefault();
-        mensajeFormulario.textContent = "Validación correcta.";
+         mensajeFormulario.textContent =
+        "Validación de ejemplo correcta. Este proyecto académico todavía " +
+        "no crea cuentas ni guarda los datos ingresados.";
+
         mensajeFormulario.className = "mensaje-formulario mensaje-exito";
+
+// Vaciar las contraseñas de prueba.
+     clave.value = "";
+    confirmarClave.value = "";
+
+    confirmarClave.setCustomValidity("");
+    actualizarSeguridad();
     });
 });
 document.addEventListener("DOMContentLoaded", function () {
