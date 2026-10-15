@@ -20,51 +20,6 @@ body {
     flex-direction: column;
 }
 
-header {
-    background: #ffffff;
-
-    padding: 22px 7%;
-
-    border-bottom: 1px solid #e5e5e5;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 6px;
-}
-
-nav a {
-    color: #526779;
-
-    text-decoration: none;
-
-    font-size: 0.95rem;
-
-    padding: 8px 12px;
-
-    transition: color 0.2s ease;
-}
-
-nav a:hover {
-    color: #073568;
-}
-
-nav a:first-child {
-    color: #073568;
-
-    font-size: 1.15rem;
-    font-weight: 700;
-
-    letter-spacing: 1px;
-
-    margin-right: 20px;
-}
-
 .registro {
     width: 90%;
     max-width: 600px;
@@ -340,29 +295,6 @@ footer a:hover {
 
 @media (max-width: 768px) {
 
-    header {
-        padding: 20px 5%;
-    }
-
-    nav {
-        gap: 3px;
-    }
-
-    nav a {
-        font-size: 0.9rem;
-
-        padding: 7px 9px;
-    }
-
-    nav a:first-child {
-        width: 100%;
-
-        margin-right: 0;
-        margin-bottom: 8px;
-
-        text-align: center;
-    }
-
     .registro {
         width: 92%;
 
@@ -374,26 +306,6 @@ footer a:hover {
 }
 
 @media (max-width: 480px) {
-
-    header {
-        padding: 18px 5%;
-    }
-
-    nav {
-        flex-direction: column;
-    }
-
-    nav a {
-        width: 100%;
-
-        text-align: center;
-    }
-
-    nav a:first-child {
-        font-size: 1.1rem;
-
-        margin-bottom: 5px;
-    }
 
     .registro {
         width: 90%;
@@ -642,3 +554,100 @@ nav a:hover, nav a[aria-current] { color: #00798c; }
 input[type="checkbox"] { accent-color: #007c99; }
 /* Tamaño del logo, sin alterar los contenedores existentes. */
 .arx-logo { display: inline-block; width: 120px; height: 80px; object-fit: contain; vertical-align: middle; }
+.site-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #00bfc5;
+    width: 100%;
+}
+
+.nav-wrap {
+    min-height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.arx-logo {
+    display: inline-block;
+    width: 120px;
+    height: auto;
+    max-height: 70px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+    align-items: center;
+}
+
+nav a {
+    color: #526779;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding-block: 10px;
+    transition: color 0.2s ease;
+}
+
+nav a:hover,
+nav a[aria-current] {
+    color: #00798c;
+    text-decoration: underline;
+    text-underline-offset: 8px;
+}
+
+/* Estilo para el botón de 'Acceso' (Último elemento del menú) */
+nav a:last-child {
+    color: #073568;
+    border: 1px solid #073568;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+nav a:last-child:hover {
+    background-color: #073568;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Adaptación Responsive para Móviles y Tabletas */
+@media (max-width: 850px) {
+    .nav-wrap {
+        flex-direction: column;
+        padding-block: 20px;
+        gap: 16px;
+    }
+
+    nav {
+        gap: 16px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 560px) {
+    nav {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+}
