@@ -58,7 +58,6 @@ header nav {
     gap: 26px;
 }
 
-/* Marca ARX DIGITAL */
 
 header nav a:first-child {
     margin-right: auto;
@@ -68,7 +67,6 @@ header nav a:first-child {
     white-space: nowrap;
 }
 
-/* Enlaces de navegación */
 
 header nav a {
     color: var(--ink);
@@ -76,19 +74,16 @@ header nav a {
     padding-block: 10px;
 }
 
-/* Ocultar el separador | del HTML */
 
 header nav {
     font-size: 0;
 }
 
-/* Recuperar el tamaño de fuente de los enlaces */
 
 header nav a {
     font-size: 13px;
 }
 
-/* Botón Acceso */
 
 header nav a:last-child {
     border: 1px solid var(--ink);
@@ -425,19 +420,16 @@ footer p:last-child {
         transition: none;
     }
 }
-/* Estilo para los enlaces de apertura */
 .open-modal-link {
   color: #0066cc;
   cursor: pointer;
   text-decoration: underline;
 }
 
-/* Ocultar los checkboxes de control */
 .modal-toggle {
   display: none;
 }
 
-/* Fondo oscuro de las modales */
 .modal {
   display: none;
   position: fixed;
@@ -451,13 +443,11 @@ footer p:last-child {
   align-items: center;
 }
 
-/* Abrir la modal correspondiente al marcar el checkbox */
 #modal-privacidad:checked ~ .modal-privacidad-box,
 #modal-terminos:checked ~ .modal-terminos-box {
   display: flex;
 }
 
-/* Contenido de la modal */
 .modal-content {
   background-color: #ffffff;
   padding: 24px;
@@ -469,7 +459,6 @@ footer p:last-child {
   position: relative;
 }
 
-/* Botón de cerrar */
 .close-btn {
   position: absolute;
   top: 12px;
@@ -492,7 +481,6 @@ body {
     animation: fadeInSlideUp 0.6s ease-out forwards;
 }
 
-/* Modal para cambiar contraseña */
 
 .password-modal {
     display: none;
@@ -632,7 +620,6 @@ body {
     }
 }
 
-/* Paleta ARX DIGITAL: solo colores. */
 body { background: radial-gradient(ellipse at 95% 5%, #dff7f6 0, transparent 34%), #f5f9fc; }
 header, footer { background-color: #fff; }
 header { border-bottom-color: #00bfc5; }
@@ -645,5 +632,4 @@ nav a:hover, nav a[aria-current] { color: #00798c; }
 .button.secondary { background-color: #fff; color: #073568; border-color: #afcddd; }
 .hero-link, .card-link, .text-link, .forgot-password, .pie a, .register-redirect a { color: #006b99; }
 input[type="checkbox"] { accent-color: #007c99; }
-/* Tamaño del logo, sin alterar los contenedores existentes. */
 .arx-logo { display: inline-block; width: 120px; height: 80px; object-fit: contain; vertical-align: middle; }
