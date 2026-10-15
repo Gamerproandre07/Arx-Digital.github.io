@@ -1,4 +1,3 @@
-/* Estilos independientes de esta página. No modifican Login, Registro ni Contacto. */
 :root { --ink: #073568; --muted: #526779; --line: #d6e6ee; --soft: #edf8fa; --radius: 10px; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
