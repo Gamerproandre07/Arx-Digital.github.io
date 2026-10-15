@@ -11,7 +11,7 @@ html {
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f7f7f7;
-    color: #222222;
+    color: #073568;
     line-height: 1.6;
 
     min-height: 100vh;
@@ -39,7 +39,7 @@ nav {
 }
 
 nav a {
-    color: #555555;
+    color: #526779;
 
     text-decoration: none;
 
@@ -51,11 +51,11 @@ nav a {
 }
 
 nav a:hover {
-    color: #000000;
+    color: #073568;
 }
 
 nav a:first-child {
-    color: #111111;
+    color: #073568;
 
     font-size: 1.15rem;
     font-weight: 700;
@@ -75,7 +75,7 @@ nav a:first-child {
 
     background: #ffffff;
 
-    border: 1px solid #e3e3e3;
+    border: 1px solid #d6e6ee;
     border-radius: 8px;
 
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
@@ -89,7 +89,7 @@ nav a:first-child {
 .marca {
     margin-bottom: 8px;
 
-    color: #222222;
+    color: #073568;
 
     font-size: 1.1rem;
     font-weight: 700;
@@ -100,7 +100,7 @@ nav a:first-child {
 }
 
 .marca span {
-    color: #777777;
+    color: #526779;
 
     font-weight: 400;
 }
@@ -108,7 +108,7 @@ nav a:first-child {
 .registro h1 {
     margin-bottom: 8px;
 
-    color: #222222;
+    color: #073568;
 
     font-size: 1.7rem;
     font-weight: 500;
@@ -119,7 +119,7 @@ nav a:first-child {
 .subtitulo {
     margin-bottom: 35px;
 
-    color: #777777;
+    color: #526779;
 
     font-size: 0.95rem;
 
@@ -136,7 +136,7 @@ nav a:first-child {
 
     margin: 20px auto 0;
 
-    background: #222222;
+    background: #073568;
 }
 
 .campo {
@@ -148,7 +148,7 @@ nav a:first-child {
 
     margin-bottom: 7px;
 
-    color: #444444;
+    color: #006b99;
 
     font-size: 0.9rem;
     font-weight: 500;
@@ -159,11 +159,11 @@ nav a:first-child {
 
     padding: 12px 13px;
 
-    background: #fafafa;
+    background: #f9fcfe;
 
-    color: #222222;
+    color: #073568;
 
-    border: 1px solid #dcdcdc;
+    border: 1px solid #b9d0dd;
     border-radius: 5px;
 
     font-family: inherit;
@@ -179,17 +179,17 @@ nav a:first-child {
 .campo input:focus {
     background: #ffffff;
 
-    border-color: #888888;
+    border-color: #00869b;
 }
 
 .campo input::placeholder {
-    color: #aaaaaa;
+    color: #637b8b;
 }
 
 .ayuda {
     margin-top: 6px;
 
-    color: #999999;
+    color: #637b8b;
 
     font-size: 0.8rem;
 }
@@ -210,13 +210,13 @@ nav a:first-child {
 
     margin-top: 5px;
 
-    accent-color: #222222;
+    accent-color: #073568;
 
     cursor: pointer;
 }
 
 .terminos label {
-    color: #666666;
+    color: #526779;
 
     font-size: 0.85rem;
 
@@ -224,7 +224,7 @@ nav a:first-child {
 }
 
 .terminos a {
-    color: #444444;
+    color: #006b99;
 
     font-weight: 500;
 
@@ -234,7 +234,7 @@ nav a:first-child {
 }
 
 .terminos a:hover {
-    color: #111111;
+    color: #073568;
 
     text-decoration: underline;
 }
@@ -244,10 +244,10 @@ button {
 
     padding: 13px 20px;
 
-    background: #222222;
+    background: #073568;
     color: #ffffff;
 
-    border: 1px solid #222222;
+    border: 1px solid #073568;
     border-radius: 5px;
 
     font-family: inherit;
@@ -263,17 +263,17 @@ button {
 }
 
 button:hover {
-    background: #444444;
+    background: #006b99;
 }
 
 button:active {
-    background: #111111;
+    background: #073568;
 }
 
 .pie {
     margin-top: 25px;
 
-    color: #777777;
+    color: #526779;
 
     font-size: 0.9rem;
 
@@ -281,7 +281,7 @@ button:active {
 }
 
 .pie a {
-    color: #444444;
+    color: #006b99;
 
     font-weight: 500;
 
@@ -291,7 +291,7 @@ button:active {
 }
 
 .pie a:hover {
-    color: #111111;
+    color: #073568;
 
     text-decoration: underline;
 }
@@ -299,13 +299,13 @@ button:active {
 footer {
     padding: 45px 7%;
 
-    background: #eeeeee;
+    background: #edf8fa;
 
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid #d6e6ee;
 
     text-align: center;
 
-    color: #777777;
+    color: #526779;
 
     font-size: 0.9rem;
 }
@@ -319,7 +319,7 @@ footer p:last-child {
 }
 
 footer strong {
-    color: #222222;
+    color: #073568;
 
     font-size: 1.1rem;
 
@@ -327,7 +327,7 @@ footer strong {
 }
 
 footer a {
-    color: #666666;
+    color: #526779;
 
     text-decoration: none;
 
@@ -335,7 +335,7 @@ footer a {
 }
 
 footer a:hover {
-    color: #111111;
+    color: #073568;
 }
 
 @media (max-width: 768px) {
@@ -450,14 +450,14 @@ footer a:hover {
 
 /* Estilo para que el texto de los términos luzca como un enlace interactivo */
 .terminos-link-click {
-  color: #444444;
+  color: #006b99;
   font-weight: 500;
   text-decoration: underline;
   cursor: pointer;
 }
 
 .terminos-link-click:hover {
-  color: #111111;
+  color: #073568;
 }
 
 /* Estado inicial del fondo oscuro (completamente oculto) */
@@ -484,7 +484,7 @@ footer a:hover {
   margin: 6% auto;
   padding: 30px;
   border-radius: 8px;
-  border: 1px solid #e3e3e3;
+  border: 1px solid #d6e6ee;
   width: 90%;
   max-width: 550px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
@@ -499,7 +499,7 @@ footer a:hover {
 
 /* Botón de cierre (X) */
 .close-btn {
-  color: #777777;
+  color: #526779;
   float: right;
   font-size: 24px;
   font-weight: bold;
@@ -509,20 +509,20 @@ footer a:hover {
 }
 
 .close-btn:hover {
-  color: #111111;
+  color: #073568;
 }
 
 .modal-content h2 {
   margin-top: 0;
   margin-bottom: 5px;
-  color: #222222;
+  color: #073568;
   font-size: 1.4rem;
   font-weight: 500;
 }
 
 .modal-subtitle {
   font-size: 0.85rem;
-  color: #777777;
+  color: #526779;
   margin-bottom: 20px;
 }
 
@@ -532,14 +532,14 @@ footer a:hover {
   overflow-y: auto;
   padding-right: 8px;
   text-align: left;
-  border-top: 1px solid #eeeeee;
-  border-bottom: 1px solid #eeeeee;
+  border-top: 1px solid #edf8fa;
+  border-bottom: 1px solid #edf8fa;
   margin-bottom: 20px;
 }
 
 .modal-body h3 {
   font-size: 0.95rem;
-  color: #222222;
+  color: #073568;
   margin-top: 15px;
   margin-bottom: 5px;
 }
@@ -547,7 +547,7 @@ footer a:hover {
 .modal-body p {
   font-size: 0.85rem;
   line-height: 1.5;
-  color: #555555;
+  color: #526779;
   margin-bottom: 10px;
 }
 
@@ -559,9 +559,9 @@ footer a:hover {
 .btn-accept {
   display: inline-block;
   padding: 10px 18px;
-  background: #222222;
+  background: #073568;
   color: #ffffff;
-  border: 1px solid #222222;
+  border: 1px solid #073568;
   border-radius: 5px;
   font-size: 0.9rem;
   font-weight: 500;
@@ -570,22 +570,22 @@ footer a:hover {
 }
 
 .btn-accept:hover {
-  background: #444444;
+  background: #006b99;
 }
 
 .btn-accept:hover {
-  background: #444444;
+  background: #006b99;
 }
 /* Estilo para que el texto de los términos luzca como un enlace subrayado */
 .terms-link-click {
-  color: #444444;
+  color: #006b99;
   font-weight: 500;
   text-decoration: underline; /* <--- Esto hace que salga subrayado */
   cursor: pointer;
 }
 
 .terms-link-click:hover {
-  color: #111111;
+  color: #073568;
   text-decoration: underline;
 }
 
@@ -607,7 +607,7 @@ footer a:hover {
     background: transparent;
     border: none;
     cursor: pointer;
-    color: #666666;
+    color: #526779;
     font-size: 1rem;
     padding: 0;
     width: auto;
@@ -620,9 +620,25 @@ footer a:hover {
 
 .toggle-visibilidad:hover {
     background: transparent;
-    color: #111111;
+    color: #073568;
 }
 
 .toggle-visibilidad:active {
     background: transparent;
 }
+
+/* Paleta ARX DIGITAL: solo colores. */
+body { background: radial-gradient(ellipse at 95% 5%, #dff7f6 0, transparent 34%), #f5f9fc; }
+header, footer { background-color: #fff; }
+header { border-bottom-color: #00bfc5; }
+footer { border-top-color: #00b2bd; }
+nav a:hover, nav a[aria-current] { color: #00798c; }
+.eyebrow, .section-label { color: #007984; }
+.visual { color: #007c99; }
+.button, .btn-submit, .btn-accept, form button[type="submit"] { background-color: #006bb3; border-color: #006bb3; color: #fff; }
+.button:hover, .btn-submit:hover, .btn-accept:hover, form button[type="submit"]:hover { background-color: #073568; border-color: #073568; }
+.button.secondary { background-color: #fff; color: #073568; border-color: #afcddd; }
+.hero-link, .card-link, .text-link, .forgot-password, .pie a, .register-redirect a { color: #006b99; }
+input[type="checkbox"] { accent-color: #007c99; }
+/* Tamaño del logo, sin alterar los contenedores existentes. */
+.arx-logo { display: inline-block; width: 120px; height: 80px; object-fit: contain; vertical-align: middle; }
