@@ -1,8 +1,8 @@
 :root {
-    --ink: #191919;
-    --muted: #626262;
-    --line: #e2e2e2;
-    --soft: #f5f5f4;
+    --ink: #073568;
+    --muted: #526779;
+    --line: #d6e6ee;
+    --soft: #edf8fa;
     --radius: 10px;
 }
 
@@ -36,7 +36,7 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-    outline: 3px solid #737373;
+    outline: 3px solid #00869b;
     outline-offset: 5px;
 }
 
@@ -171,7 +171,7 @@ form textarea {
     display: block;
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid #d6d6d6;
+    border: 1px solid #afcddd;
     border-radius: 5px;
     background: #fff;
     color: var(--ink);
@@ -192,13 +192,13 @@ form textarea {
 
 form input::placeholder,
 form textarea::placeholder {
-    color: #929292;
+    color: #637b8b;
     opacity: 1;
 }
 
 form input:focus,
 form textarea:focus {
-    border-color: #737373;
+    border-color: #00869b;
     outline: none;
 }
 
@@ -225,7 +225,7 @@ form button {
 }
 
 form button:hover {
-    background: #373737;
+    background: #075781;
 }
 
 footer {
@@ -261,7 +261,6 @@ footer p {
     margin-bottom: 18px;
 }
 
-/* Copyright */
 footer p:last-child {
     margin: 25px 0 0;
     padding-block: 25px;
@@ -269,7 +268,6 @@ footer p:last-child {
     font-size: 11px;
 }
 
-/* Estilo para los enlaces interactivos que abren las modales */
 .open-modal-link {
     color: var(--muted);
     font-size: 13px;
@@ -365,3 +363,18 @@ footer p:last-child {
     form button { width: 100%; }
     footer { margin-top: 55px; padding: 30px 5% 0; }
 }
+
+body { background: radial-gradient(ellipse at 95% 5%, #dff7f6 0, transparent 34%), #f5f9fc; }
+header, footer { background-color: #fff; }
+header { border-bottom-color: #00bfc5; }
+footer { border-top-color: #00b2bd; }
+nav a:hover, nav a[aria-current] { color: #00798c; }
+.eyebrow, .section-label { color: #007984; }
+.visual { color: #007c99; }
+.button, .btn-submit, .btn-accept, form button[type="submit"] { background-color: #006bb3; border-color: #006bb3; color: #fff; }
+.button:hover, .btn-submit:hover, .btn-accept:hover, form button[type="submit"]:hover { background-color: #073568; border-color: #073568; }
+.button.secondary { background-color: #fff; color: #073568; border-color: #afcddd; }
+.hero-link, .card-link, .text-link, .forgot-password, .pie a, .register-redirect a { color: #006b99; }
+input[type="checkbox"] { accent-color: #007c99; }
+/* Tamaño del logo, sin alterar los contenedores existentes. */
+.arx-logo { display: inline-block; width: 120px; height: 80px; object-fit: contain; vertical-align: middle; }
