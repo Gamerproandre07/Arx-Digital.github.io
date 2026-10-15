@@ -378,3 +378,43 @@ nav a:hover, nav a[aria-current] { color: #00798c; }
 input[type="checkbox"] { accent-color: #007c99; }
 /* Tamaño del logo, sin alterar los contenedores existentes. */
 .arx-logo { display: inline-block; width: 120px; height: 80px; object-fit: contain; vertical-align: middle; }
+.redes-sociales {
+  text-align: left;
+  margin-top: 30px;
+}
+
+.redes-titulo {
+  font-weight: bold;
+  color: #0a2a5e;
+  margin-bottom: 12px;
+}
+
+.redes-iconos {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.red {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.red:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.facebook  { background: #1877f2; }
+.instagram { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
+.twitter   { background: #000; }
+.whatsapp  { background: #25d366; }
+.correo    { background: #0a6bb5; }
