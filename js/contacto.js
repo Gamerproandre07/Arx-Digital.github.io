@@ -88,8 +88,26 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnTerminos) {
         btnTerminos.addEventListener("click", () => abrirModal(contenidoTerminos));
     }
-}) ;overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) {
-        cerrarModal();
-    }
+});
+    document.addEventListener("DOMContentLoaded", function () {
+    const formulario = document.querySelector("main form");
+
+    if (!formulario) return;
+
+    const mensaje = document.createElement("p");
+    mensaje.setAttribute("role", "status");
+    mensaje.setAttribute("aria-live", "polite");
+    formulario.appendChild(mensaje);
+
+    formulario.addEventListener("submit", function (evento) {
+        evento.preventDefault();
+
+        if (!formulario.reportValidity()) return;
+
+        mensaje.textContent =
+            "Validación de ejemplo correcta. El formulario de contacto " +
+            "todavía no envía mensajes ni guarda los datos ingresados.";
+
+        formulario.reset();
+     });
 });
