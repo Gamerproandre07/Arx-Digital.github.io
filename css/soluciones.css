@@ -85,9 +85,7 @@ section { margin-block: 76px; }
 }
 .solution-image-container img {
     width: 100%;
-    height: 260px;
-    object-fit: cover;
-    object-position: center;
+    height: auto;
     display: block;
 }
 
