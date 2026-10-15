@@ -1,283 +1,202 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const passwordInput = document.getElementById('password');
-    const iconToggle = document.getElementById('iconToggle');
-
-    if (passwordInput && iconToggle) {
-        iconToggle.addEventListener('click', function () {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
-        });
-    }
-});
+"use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-    const forgotPasswordLink =
-        document.getElementById("forgotPasswordLink");
+    const formularioLogin = document.querySelector(".login-card form");
+    const passwordInput = document.getElementById("password");
+    const iconToggle = document.getElementById("iconToggle");
+    const forgotPasswordLink = document.getElementById("forgotPasswordLink");
 
-    const passwordModal =
-        document.getElementById("passwordModal");
-
-    const closePasswordModal =
-        document.getElementById("closePasswordModal");
-
-    const cancelPasswordModal =
-        document.getElementById("cancelPasswordModal");
-
-    const changePasswordForm =
-        document.getElementById("changePasswordForm");
-
-    const newPassword =
-        document.getElementById("newPassword");
-
-    const confirmPassword =
-        document.getElementById("confirmPassword");
-
-    const passwordMessage =
-        document.getElementById("passwordMessage");
-
-    
-    forgotPasswordLink.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        passwordMessage.textContent = "";
-        passwordModal.classList.add("active");
-        passwordModal.setAttribute("aria-hidden", "false");
-
-        newPassword.focus();
-    });
-
-    
-    function closeModal() {
-        passwordModal.classList.remove("active");
-        passwordModal.setAttribute("aria-hidden", "true");
-        changePasswordForm.reset();
-        passwordMessage.textContent = "";
-        passwordMessage.className = "";
-    }
-
-    closePasswordModal.addEventListener("click", closeModal);
-    cancelPasswordModal.addEventListener("click", closeModal);
-
-    
-    passwordModal.addEventListener("click", function (event) {
-        if (event.target === passwordModal) {
-            closeModal();
-        }
-    });
-
-    
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape" &&
-            passwordModal.classList.contains("active")) {
-            closeModal();
-        }
-    });
-
-    
-    changePasswordForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const nueva = newPassword.value;
-        const confirmar = confirmPassword.value;
-
-        passwordMessage.className = "";
-
-        if (nueva.length < 8) {
-            passwordMessage.textContent =
-                "La contraseña debe tener al menos 8 caracteres.";
-            passwordMessage.classList.add("password-error");
-            return;
-        }
-
-        if (nueva !== confirmar) {
-            passwordMessage.textContent =
-                "Las contraseñas no coinciden.";
-            passwordMessage.classList.add("password-error");
-            return;
-        }
-
-        passwordMessage.textContent =
-            "Las contraseñas coinciden, Exito en guardar.";
-
-        passwordMessage.classList.add("password-success");
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    // Modal para solicitar el correo
-    const recoverEmailModal =
-        document.getElementById("recoverEmailModal");
-
-    const recoverEmailForm =
-        document.getElementById("recoverEmailForm");
-
-    const recoveryEmail =
-        document.getElementById("recoveryEmail");
-
+    const recoverEmailModal = document.getElementById("recoverEmailModal");
+    const recoverEmailForm = document.getElementById("recoverEmailForm");
+    const recoveryEmail = document.getElementById("recoveryEmail");
     const recoveryEmailMessage =
         document.getElementById("recoveryEmailMessage");
 
-    const closeRecoverEmailModal =
-        document.getElementById("closeRecoverEmailModal");
-
-    const cancelRecoverEmailModal =
-        document.getElementById("cancelRecoverEmailModal");
-
-    // Modal para cambiar la contraseña
-    const passwordModal =
-        document.getElementById("passwordModal");
-
-    const closePasswordModal =
-        document.getElementById("closePasswordModal");
-
-    const cancelPasswordModal =
-        document.getElementById("cancelPasswordModal");
-
+    const passwordModal = document.getElementById("passwordModal");
     const changePasswordForm =
         document.getElementById("changePasswordForm");
+    const newPassword = document.getElementById("newPassword");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const passwordMessage = document.getElementById("passwordMessage");
 
-    const newPassword =
-        document.getElementById("newPassword");
+    // Mostrar u ocultar la contraseña.
+    if (passwordInput && iconToggle) {
+        iconToggle.addEventListener("click", function () {
+            const mostrar = passwordInput.type === "password";
 
-    const confirmPassword =
-        document.getElementById("confirmPassword");
-
-    const passwordMessage =
-        document.getElementById("passwordMessage");
-
-    // Enlace "¿Olvidaste tu contraseña?"
-    // Ajusta el selector si tu enlace usa otro identificador.
-    const forgotPasswordLink =
-        document.querySelector(".forgot-password");
-
-    // Abrir modal de recuperación
-    function openRecoverEmailModal(event) {
-        if (event) {
-            event.preventDefault();
-        }
-
-        closeModal(passwordModal);
-        recoveryEmailMessage.textContent = "";
-        recoveryEmailMessage.className = "";
-
-        openModal(recoverEmailModal);
-        recoveryEmail.focus();
+            passwordInput.type = mostrar ? "text" : "password";
+            iconToggle.classList.toggle("fa-eye", mostrar);
+            iconToggle.classList.toggle("fa-eye-slash", !mostrar);
+        });
     }
 
-    // Abrir y cerrar modales
-    function openModal(modal) {
+    function mostrarMensaje(elemento, texto, esError = false) {
+        if (!elemento) return;
+
+        elemento.textContent = texto;
+        elemento.classList.remove("password-error", "password-success");
+
+        if (esError) {
+            elemento.classList.add("password-error");
+        }
+
+        elemento.setAttribute("role", "status");
+        elemento.setAttribute("aria-live", "polite");
+    }
+
+    function abrirModal(modal) {
         if (!modal) return;
 
         modal.classList.add("active");
         modal.setAttribute("aria-hidden", "false");
+
+        const primerCampo = modal.querySelector("input");
+        if (primerCampo) primerCampo.focus();
     }
 
-    function closeModal(modal) {
+    function cerrarModal(modal) {
         if (!modal) return;
 
         modal.classList.remove("active");
         modal.setAttribute("aria-hidden", "true");
+
+        const formulario = modal.querySelector("form");
+        if (formulario) formulario.reset();
+
+        const mensaje = modal.querySelector('[role="status"]');
+        if (mensaje) mostrarMensaje(mensaje, "");
     }
 
-    // Conectar enlace de recuperación
+    // Demostración del inicio de sesión: no envía datos.
+    if (formularioLogin) {
+        const mensajeLogin = document.createElement("p");
+        mensajeLogin.setAttribute("role", "status");
+        mensajeLogin.setAttribute("aria-live", "polite");
+        formularioLogin.appendChild(mensajeLogin);
+
+        formularioLogin.addEventListener("submit", function (evento) {
+            evento.preventDefault();
+
+            if (!formularioLogin.reportValidity()) return;
+
+            mostrarMensaje(
+                mensajeLogin,
+                "Demostración académica: el inicio de sesión todavía " +
+                "no está disponible. No se ha iniciado ninguna sesión " +
+                "ni enviado los datos."
+            );
+
+            if (passwordInput) passwordInput.value = "";
+        });
+    }
+
+    // Abrir únicamente la ventana para solicitar el correo.
     if (forgotPasswordLink) {
-        forgotPasswordLink.addEventListener(
-            "click",
-            openRecoverEmailModal
-        );
+        forgotPasswordLink.addEventListener("click", function (evento) {
+            evento.preventDefault();
+
+            cerrarModal(passwordModal);
+            mostrarMensaje(recoveryEmailMessage, "");
+            abrirModal(recoverEmailModal);
+        });
     }
 
-    // Cerrar modal de correo
-    closeRecoverEmailModal.addEventListener("click", function () {
-        closeModal(recoverEmailModal);
+    // Configurar botones para cerrar las ventanas.
+    const botonesCerrar = [
+        ["closeRecoverEmailModal", recoverEmailModal],
+        ["cancelRecoverEmailModal", recoverEmailModal],
+        ["closePasswordModal", passwordModal],
+        ["cancelPasswordModal", passwordModal]
+    ];
+
+    botonesCerrar.forEach(function ([id, modal]) {
+        const boton = document.getElementById(id);
+
+        if (boton) {
+            boton.addEventListener("click", function () {
+                cerrarModal(modal);
+                if (forgotPasswordLink) forgotPasswordLink.focus();
+            });
+        }
     });
 
-    cancelRecoverEmailModal.addEventListener("click", function () {
-        closeModal(recoverEmailModal);
-    });
-
-    // Cerrar modal de cambio de contraseña
-    closePasswordModal.addEventListener("click", function () {
-        closeModal(passwordModal);
-    });
-
-    cancelPasswordModal.addEventListener("click", function () {
-        closeModal(passwordModal);
-    });
-
-    // Cerrar al hacer clic en el fondo
+    // Cerrar al pulsar fuera del contenido.
     [recoverEmailModal, passwordModal].forEach(function (modal) {
-        modal.addEventListener("click", function (event) {
-            if (event.target === modal) {
-                closeModal(modal);
+        if (!modal) return;
+
+        modal.addEventListener("click", function (evento) {
+            if (evento.target === modal) {
+                cerrarModal(modal);
+                if (forgotPasswordLink) forgotPasswordLink.focus();
             }
         });
     });
 
-    // Enviar correo: falta conectar el servicio de recuperación.
-    recoverEmailForm.addEventListener("submit", function (event) {
-        event.preventDefault();
+    // Cerrar con Escape.
+    document.addEventListener("keydown", function (evento) {
+        if (evento.key !== "Escape") return;
 
-        const email = recoveryEmail.value.trim();
+        const abierta = [recoverEmailModal, passwordModal].find(
+            modal => modal && modal.classList.contains("active")
+        );
 
-        recoveryEmailMessage.className = "";
-        recoveryEmailMessage.textContent = "";
-
-        if (!recoveryEmail.checkValidity() || !email) {
-            recoveryEmailMessage.textContent =
-                "Introduce un correo electrónico válido.";
-            recoveryEmailMessage.classList.add("password-error");
-            recoveryEmail.focus();
-            return;
-        }
-
-        recoveryEmailMessage.textContent =
-            "No hay conexion con la base de datos " +
-            "No se puede enviar el codigo de verficación.";
-
-        recoveryEmailMessage.classList.add("password-error");
-    });
-
-    // Validación de la nueva contraseña.
-    // Esta validación NO guarda la contraseña en el servidor.
-    changePasswordForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const nueva = newPassword.value;
-        const confirmar = confirmPassword.value;
-
-        passwordMessage.className = "";
-        passwordMessage.textContent = "";
-
-        if (nueva.length < 8) {
-            passwordMessage.textContent =
-                "La contraseña debe tener al menos 8 caracteres.";
-            passwordMessage.classList.add("password-error");
-            return;
-        }
-
-        if (nueva !== confirmar) {
-            passwordMessage.textContent =
-                "Las contraseñas no coinciden.";
-            passwordMessage.classList.add("password-error");
-            return;
-        }
-
-        passwordMessage.textContent =
-            "Las contraseñas coinciden, pero falta conectarlas " +
-            "a la base de datos para guardar la contraseña.";
-
-        passwordMessage.classList.add("password-error");
-    });
-
-    // Permitir cerrar las ventanas con Escape
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            closeModal(recoverEmailModal);
-            closeModal(passwordModal);
+        if (abierta) {
+            cerrarModal(abierta);
+            if (forgotPasswordLink) forgotPasswordLink.focus();
         }
     });
+
+    // Validación de ejemplo: no envía correos ni códigos.
+    if (recoverEmailForm && recoveryEmail) {
+        recoverEmailForm.addEventListener("submit", function (evento) {
+            evento.preventDefault();
+
+            if (!recoverEmailForm.reportValidity()) return;
+
+            mostrarMensaje(
+                recoveryEmailMessage,
+                "Demostración académica: el formato del correo es válido. " +
+                "No se ha comprobado si existe una cuenta ni se ha " +
+                "enviado un código. La recuperación aún no está disponible."
+            );
+
+            recoverEmailForm.reset();
+        });
+    }
+
+    // Se conserva la validación para la futura implementación.
+    // No se abre esta ventana como si el correo ya estuviera verificado.
+    if (changePasswordForm && newPassword && confirmPassword) {
+        changePasswordForm.addEventListener("submit", function (evento) {
+            evento.preventDefault();
+
+            if (!changePasswordForm.reportValidity()) return;
+
+            if (newPassword.value.length < 8) {
+                mostrarMensaje(
+                    passwordMessage,
+                    "La contraseña de prueba debe tener al menos 8 caracteres.",
+                    true
+                );
+                return;
+            }
+
+            if (newPassword.value !== confirmPassword.value) {
+                mostrarMensaje(
+                    passwordMessage,
+                    "Las contraseñas de prueba no coinciden.",
+                    true
+                );
+                return;
+            }
+
+            mostrarMensaje(
+                passwordMessage,
+                "Validación de ejemplo correcta. No se ha guardado " +
+                "ni cambiado ninguna contraseña."
+            );
+
+            changePasswordForm.reset();
+        });
+    }
 });
