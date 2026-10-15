@@ -219,54 +219,136 @@
         </div>
     </div>
 
-    <!-- Modal para cambiar contraseña -->
-    <div id="passwordModal" class="password-modal"
-         aria-hidden="true">
-        <div class="password-modal-content"
-             role="dialog" aria-modal="true"
-             aria-labelledby="passwordModalTitle">
+<!-- Modal para recuperar contraseña: solicitar correo electrónico -->
+<div id="recoverEmailModal"
+     class="password-modal"
+     aria-hidden="true">
 
-            <button type="button" class="password-close"
-                    id="closePasswordModal"
-                    aria-label="Cerrar">&times;</button>
+    <div class="password-modal-content"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="recoverEmailTitle">
 
-            <h2 id="passwordModalTitle">Cambiar contraseña</h2>
-            <p class="password-subtitle">
-                Ingresa y confirma tu nueva contraseña.
-            </p>
+        <button type="button"
+                class="password-close"
+                id="closeRecoverEmailModal"
+                aria-label="Cerrar">
+            &times;
+        </button>
 
-            <form id="changePasswordForm">
-                <div class="input-group">
-                    <label for="newPassword">Nueva contraseña</label>
-                    <input type="password" id="newPassword"
-                           placeholder="Mínimo 8 caracteres"
-                           minlength="8"
-                           autocomplete="new-password" required>
-                </div>
+        <h2 id="recoverEmailTitle">
+            Recuperar contraseña
+        </h2>
 
-                <div class="input-group">
-                    <label for="confirmPassword">
-                        Confirmar contraseña
-                    </label>
-                    <input type="password" id="confirmPassword"
-                           placeholder="Repite tu nueva contraseña"
-                           minlength="8"
-                           autocomplete="new-password" required>
-                </div>
+        <p class="password-subtitle">
+            Ingresa el correo electrónico asociado a tu cuenta
+            para continuar con la recuperación.
+        </p>
 
-                <p id="passwordMessage" role="status"
-                   aria-live="polite"></p>
+        <form id="recoverEmailForm">
 
-                <button type="submit" class="btn-submit">
-                    Guardar nueva contraseña
-                </button>
+            <div class="input-group">
+                <label for="recoveryEmail">
+                    Correo electrónico
+                </label>
 
-                <button type="button" class="btn-cancel"
-                        id="cancelPasswordModal">
-                    Cancelar
-                </button>
-            </form>
-        </div>
+                <input type="email"
+                       id="recoveryEmail"
+                       name="email"
+                       placeholder="nombre@ejemplo.com"
+                       autocomplete="email"
+                       required>
+            </div>
+
+            <p id="recoveryEmailMessage"
+               role="status"
+               aria-live="polite"></p>
+
+            <button type="submit" class="btn-submit">
+                Continuar
+            </button>
+
+            <button type="button"
+                    class="btn-cancel"
+                    id="cancelRecoverEmailModal">
+                Cancelar
+            </button>
+
+        </form>
     </div>
-</body>
+</div>
+
+
+<!-- Modal para cambiar contraseña -->
+<div id="passwordModal"
+     class="password-modal"
+     aria-hidden="true">
+
+    <div class="password-modal-content"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="passwordModalTitle">
+
+        <button type="button"
+                class="password-close"
+                id="closePasswordModal"
+                aria-label="Cerrar">
+            &times;
+        </button>
+
+        <h2 id="passwordModalTitle">
+            Cambiar contraseña
+        </h2>
+
+        <p class="password-subtitle">
+            Ingresa y confirma tu nueva contraseña.
+        </p>
+
+        <form id="changePasswordForm">
+
+            <div class="input-group">
+                <label for="newPassword">
+                    Nueva contraseña
+                </label>
+
+                <input type="password"
+                       id="newPassword"
+                       name="newPassword"
+                       placeholder="Mínimo 8 caracteres"
+                       minlength="8"
+                       autocomplete="new-password"
+                       required>
+            </div>
+
+            <div class="input-group">
+                <label for="confirmPassword">
+                    Confirmar contraseña
+                </label>
+
+                <input type="password"
+                       id="confirmPassword"
+                       name="confirmPassword"
+                       placeholder="Repite tu nueva contraseña"
+                       minlength="8"
+                       autocomplete="new-password"
+                       required>
+            </div>
+
+            <p id="passwordMessage"
+               role="status"
+               aria-live="polite"></p>
+
+            <button type="submit" class="btn-submit">
+                Guardar nueva contraseña
+            </button>
+
+            <button type="button"
+                    class="btn-cancel"
+                    id="cancelPasswordModal">
+                Cancelar
+            </button>
+
+        </form>
+    </div>
+</div>
 </html>
