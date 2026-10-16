@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // ==========================================
-    // 1. ELEMENTOS PRINCIPALES
-    // ==========================================
     const inputBuscar = document.getElementById("buscar");
     const botonesFiltro = document.querySelectorAll(".filters button");
     const tarjetasRecursos = document.querySelectorAll("#recursos .resource");
@@ -18,10 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let filtroActual = "todos";
     let textoBusqueda = "";
     let temporizadorBusqueda;
-
-    // ==========================================
-    // 2. NORMALIZAR TEXTO
-    // ==========================================
+    
     function normalizarTexto(texto) {
         return texto
             .toLowerCase()
@@ -29,9 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/[\u0300-\u036f]/g, "");
     }
 
-    // ==========================================
-// 3. ANIMACIÓN INICIAL DE SECCIONES
-// ==========================================
+
 if (!reducirMovimiento) {
     elementosAnimados.forEach((elemento, indice) => {
         elemento.classList.add("arx-aparecer");
@@ -41,9 +33,7 @@ if (!reducirMovimiento) {
     });
 }
 
-    // ==========================================
-    // 4. ANIMACIÓN INICIAL DE SECCIONES
-    // ==========================================
+
     if (!reducirMovimiento) {
         elementosAnimados.forEach((elemento, indice) => {
             elemento.classList.add("arx-aparecer");
@@ -51,9 +41,6 @@ if (!reducirMovimiento) {
         });
     }
 
-    // ==========================================
-    // 5. FILTRAR RECURSOS
-    // ==========================================
     function filtrarRecursos() {
         let contadorVisibles = 0;
 
@@ -71,7 +58,7 @@ if (!reducirMovimiento) {
                 tarjeta.hidden = false;
                 contadorVisibles++;
 
-                // Animar la aparición de cada tarjeta
+                
                 if (!reducirMovimiento) {
                     tarjeta.classList.remove("arx-entrada");
 
@@ -97,9 +84,6 @@ if (!reducirMovimiento) {
         }
     }
 
-    // ==========================================
-    // 6. BÚSQUEDA EN TIEMPO REAL
-    // ==========================================
     if (inputBuscar) {
         inputBuscar.addEventListener("input", evento => {
             textoBusqueda = normalizarTexto(
@@ -115,9 +99,7 @@ if (!reducirMovimiento) {
         });
     }
 
-    // ==========================================
-    // 7. BOTONES DE FILTRO ANIMADOS
-    // ==========================================
+
     botonesFiltro.forEach(boton => {
         boton.addEventListener("click", () => {
             botonesFiltro.forEach(otroBoton => {
@@ -134,9 +116,7 @@ if (!reducirMovimiento) {
         });
     });
 
-    // ==========================================
-    // 8. ACORDEÓN DE GUÍAS
-    // ==========================================
+
     guias.forEach(guia => {
         guia.addEventListener("toggle", () => {
             if (!guia.open) return;
@@ -149,9 +129,7 @@ if (!reducirMovimiento) {
         });
     });
 
-    // ==========================================
-    // 9. ABRIR GUÍAS MEDIANTE SU URL
-    // ==========================================
+
     function abrirGuiaDesdeHash() {
         const idGuia = window.location.hash.slice(1);
 
@@ -171,9 +149,6 @@ if (!reducirMovimiento) {
 
     window.addEventListener("hashchange", abrirGuiaDesdeHash);
 
-    // ==========================================
-    // 10. INICIALIZACIÓN
-    // ==========================================
     filtrarRecursos();
     abrirGuiaDesdeHash();
 });
