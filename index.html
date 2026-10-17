@@ -363,6 +363,48 @@ Un entorno más seguro mañana.
     © 2026 ARX DIGITAL. Todos los derechos reservados.
    </p>
   </footer>
+    <!-- Modal de Contacto por Intención de Salida -->
+<div id="exitModal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-container">
+    <button type="button" class="modal-close" id="closeModalBtn" aria-label="Cerrar">&times;</button>
+    
+    <div class="modal-header">
+      <h2>¿Tienes dudas sobre cómo proteger a tu organización o grupo?</h2>[cite: 5]
+      <p>Escríbenos. Nuestro equipo de expertos está listo para orientarte hacia la mejor solución informativa o técnica.</p>[cite: 5]
+    </div>
+
+    <h3>Contáctanos</h3>[cite: 5]
+
+    <form class="modal-form" id="exitContactForm" onsubmit="event.preventDefault(); alert('¡Gracias! Te contactaremos pronto.'); document.getElementById('exitModal').classList.remove('active');">
+      <div class="form-group">
+        <label for="modal-nombre">Nombre:</label>[cite: 5]
+        <input type="text" id="modal-nombre" placeholder="Escribe tu nombre" required>[cite: 5]
+      </div>
+
+      <div class="form-group">
+        <label for="modal-apellido">Apellido:</label>[cite: 5]
+        <input type="text" id="modal-apellido" placeholder="Escribe tu apellido" required>[cite: 5]
+      </div>
+
+      <div class="form-group">
+        <label for="modal-email">Correo electrónico:</label>[cite: 5]
+        <input type="email" id="modal-email" placeholder="Escribe tu correo" required>[cite: 5]
+      </div>
+
+      <div class="form-group">
+        <label for="modal-grupo">¿A qué grupo perteneces? (Empresa, Institución Educativa, Particular):</label>[cite: 5]
+        <input type="text" id="modal-grupo" placeholder="Escribe tu grupo">[cite: 5]
+      </div>
+
+      <div class="form-group">
+        <label for="modal-mensaje">Cuéntanos tu caso o duda de seguridad:</label>[cite: 5]
+        <textarea id="modal-mensaje" rows="4" placeholder="Escribe tu mensaje" required></textarea>[cite: 5]
+      </div>
+
+      <button type="submit" class="button">Enviar</button>[cite: 5]
+    </form>
+  </div>
+</div>
     <script src="js/index.js"></script>
  </body>
 </html>
