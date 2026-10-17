@@ -262,53 +262,69 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const modal = document.getElementById('exitModal');
-    const closeBtn = document.getElementById('closeModalBtn');
-    const form = document.getElementById('exitContactForm');
-    let hasShown = false;
+  const modal = document.getElementById('exitModal');
+  const closeBtn = document.getElementById('closeModalBtn');
+  const form = document.getElementById('exitContactForm');
+  let hasShown = false;
 
-    // Detectar intención de salida (ratón sale por arriba)
-    document.addEventListener('mouseleave', function (e) {
-      // e.clientY <= 0 significa que el puntero salió por la parte superior del navegador
-      if (e.clientY <= 0 && !hasShown) {
-        modal.classList.add('active'); // Esta clase lo muestra (gracias al CSS)
-        modal.setAttribute('aria-hidden', 'false');
-        hasShown = true; // No volver a mostrar en esta sesión
-      }
-    });
+  function openModal() {
+    if (!hasShown && modal) {
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      hasShown = true; // Se muestra solo una vez por sesión
+    }
+  }
 
-    // Función para cerrar el modal
-    function closeModal() {
-      modal.classList.remove('active'); // Esta clase lo oculta
+  function closeModal() {
+    if (modal) {
+      modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
     }
+  }
 
-    // Cerrar al pulsar la X
-    if (closeBtn) {
-      closeBtn.addEventListener('click', closeModal);
+  // 1. Detección por movimiento hacia la zona superior (Pestañas / X del navegador)
+  document.addEventListener('mousemove', function (e) {
+    // Si el cursor está en los primeros 15 píxeles superiores de la ventana
+    if (e.clientY <= 15) {
+      openModal();
     }
+  });
 
-    // Cerrar al hacer clic fuera del recuadro blanco
+  // 2. Detección si el cursor sale completamente por la parte superior de la ventana
+  document.addEventListener('mouseleave', function (e) {
+    if (e.clientY <= 10) {
+      openModal();
+    }
+  });
+
+  // Cerrar al hacer clic en la X del modal
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  // Cerrar al hacer clic en el fondo oscuro
+  if (modal) {
     modal.addEventListener('click', function (e) {
       if (e.target === modal) {
         closeModal();
       }
     });
+  }
 
-    // Cerrar al pulsar la tecla Esc
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeModal();
-      }
-    });
-
-    // Manejar el envío del formulario (opcional)
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('¡Gracias por contactarnos! Te responderemos pronto.');
-        closeModal();
-        form.reset(); // Limpiar formulario
-      });
+  // Cerrar con la tecla Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+      closeModal();
     }
   });
+
+  // Procesar envío del formulario
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('¡Gracias por contactarnos! Te responderemos pronto.');
+      closeModal();
+      form.reset();
+    });
+  }
+});
