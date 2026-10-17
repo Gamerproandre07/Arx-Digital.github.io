@@ -262,3 +262,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('exitModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+    let hasShown = false;
+
+    // Detectar cuando el mouse sale por la parte superior de la ventana
+    document.addEventListener('mouseleave', function (e) {
+      if (e.clientY <= 0 && !hasShown) {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        hasShown = true; // Evita que se repita constantemente
+      }
+    });
+
+    // Cerrar al hacer clic en la "X"
+    closeBtn.addEventListener('click', function () {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Cerrar al hacer clic fuera del contenido del modal
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  });
