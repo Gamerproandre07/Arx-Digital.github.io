@@ -276,3 +276,147 @@ Modal de Intención de Salida (Exit-Intent Popup)
   margin-top: 10px;
   padding: 10px 24px;
 }
+/* =========================================================
+   ESTILOS CRÍTICOS PARA EL MODAL DE SALIDA (Pegar en .css)
+   ========================================================= */
+
+/* 1. Fondo oscuro que cubre toda la pantalla */
+.modal-overlay {
+  position: fixed; /* Fijo en la pantalla, no se mueve con el scroll */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(7, 53, 104, 0.7); /* Color oscuro ARX con transparencia */
+  backdrop-filter: blur(4px); /* Efecto borroso detrás */
+  display: flex; /* Para centrar el recuadro blanco */
+  align-items: center;
+  justify-content: center;
+  z-index: 99999; /* Número muy alto para estar ENCIMA de todo */
+  
+  /* ESTADO INICIAL: OCULTO */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 2. CLASE ACTIVA: Se añade con JS para mostrar el modal */
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 3. El recuadro blanco (contenedor del formulario) */
+.modal-container {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 580px; /* Ancho máximo */
+  max-height: 90vh; /* Alto máximo (90% de la pantalla) */
+  overflow-y: auto; /* Scroll interno si el formulario es muy largo */
+  padding: 35px 30px;
+  position: relative; /* Para posicionar la X */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  
+  /* Animación de entrada */
+  transform: translateY(-50px);
+  transition: transform 0.3s ease;
+}
+
+/* Animación cuando está activo */
+.modal-overlay.active .modal-container {
+  transform: translateY(0);
+}
+
+/* 4. Estilos del botón de cerrar (la X) */
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 32px; /* Tamaño grande */
+  font-weight: bold;
+  color: #526779; /* Color muted */
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  z-index: 2;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: #073568; /* Color oscuro ARX al pasar el ratón */
+  text-decoration: none;
+}
+
+/* 5. Estilos generales del formulario dentro del modal (ARX Style) */
+.modal-header h2 {
+  font-size: 24px;
+  color: #073568;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.modal-header p {
+  font-size: 14px;
+  color: #526779;
+  margin-bottom: 25px;
+}
+
+.modal-container h3 {
+  font-size: 18px;
+  color: #073568;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #d6e6ee;
+  padding-bottom: 8px;
+}
+
+.modal-form .form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.modal-form label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #073568;
+  margin-bottom: 5px;
+}
+
+.modal-form input,
+.modal-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d6e6ee;
+  border-radius: 6px;
+  font-size: 13px;
+  box-sizing: border-box; /* Importante para el ancho */
+  font-family: Arial, sans-serif;
+}
+
+.modal-form input:focus,
+.modal-form textarea:focus {
+  outline: none;
+  border-color: #00869b;
+  box-shadow: 0 0 0 3px rgba(0, 134, 155, 0.1);
+}
+
+.modal-form button.button {
+  background-color: #006bb3;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modal-form button.button:hover {
+  background-color: #073568;
+}
