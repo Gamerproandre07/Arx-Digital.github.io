@@ -222,3 +222,42 @@ input[type="checkbox"] { accent-color: #007c99; }
 /* Tamaño del logo, sin alterar los contenedores existentes. */
 
 .arx-logo { display: inline-block; width: 120px; height: 80px; object-fit: contain; vertical-align: middle; }
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 380px;
+    box-sizing: border-box;
+}
+
+.card-body {
+    padding: 30px;
+    text-align: center;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.card-body h3 {
+    margin: 0 0 10px 0;
+    color: #1a1a1a;
+    font-size: 24px;
+}
+
+.card-body p {
+    color: #555555;
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+.card-body p strong {
+    color: #222222;
+}
