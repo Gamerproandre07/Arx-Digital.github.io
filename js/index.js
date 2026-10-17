@@ -261,32 +261,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-});
 document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('exitModal');
     const closeBtn = document.getElementById('closeModalBtn');
+    const form = document.getElementById('exitContactForm');
     let hasShown = false;
 
-    // Detectar cuando el mouse sale por la parte superior de la ventana
+    // Detectar intención de salida (ratón sale por arriba)
     document.addEventListener('mouseleave', function (e) {
+      // e.clientY <= 0 significa que el puntero salió por la parte superior del navegador
       if (e.clientY <= 0 && !hasShown) {
-        modal.classList.add('active');
+        modal.classList.add('active'); // Esta clase lo muestra (gracias al CSS)
         modal.setAttribute('aria-hidden', 'false');
-        hasShown = true; // Evita que se repita constantemente
+        hasShown = true; // No volver a mostrar en esta sesión
       }
     });
 
-    // Cerrar al hacer clic en la "X"
-    closeBtn.addEventListener('click', function () {
-      modal.classList.remove('active');
+    // Función para cerrar el modal
+    function closeModal() {
+      modal.classList.remove('active'); // Esta clase lo oculta
       modal.setAttribute('aria-hidden', 'true');
-    });
+    }
 
-    // Cerrar al hacer clic fuera del contenido del modal
+    // Cerrar al pulsar la X
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeModal);
+    }
+
+    // Cerrar al hacer clic fuera del recuadro blanco
     modal.addEventListener('click', function (e) {
       if (e.target === modal) {
-        modal.classList.remove('active');
-        modal.setAttribute('aria-hidden', 'true');
+        closeModal();
       }
     });
+
+    // Cerrar al pulsar la tecla Esc
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    // Manejar el envío del formulario (opcional)
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('¡Gracias por contactarnos! Te responderemos pronto.');
+        closeModal();
+        form.reset(); // Limpiar formulario
+      });
+    }
   });
