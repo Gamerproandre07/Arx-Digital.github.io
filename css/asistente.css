@@ -1,0 +1,351 @@
+/* =========================================
+   ASISTENTE VIRTUAL - ARX DIGITAL
+   ========================================= */
+
+/* Botón flotante */
+.arx-ai-button {
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+
+    width: 64px;
+    height: 64px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #006bb3, #008fa3);
+    color: white;
+
+    font-size: 27px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 10px 30px rgba(7, 53, 104, 0.30);
+
+    z-index: 9000;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.arx-ai-button:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 14px 35px rgba(7, 53, 104, 0.40);
+}
+
+
+/* =========================================
+   VENTANA DEL ASISTENTE
+   ========================================= */
+
+.arx-ai-chat {
+    position: fixed;
+
+    right: 28px;
+    bottom: 105px;
+
+    width: 370px;
+    height: 520px;
+
+    background: white;
+
+    border: 1px solid #d6e6ee;
+    border-radius: 16px;
+
+    box-shadow: 0 20px 60px rgba(7, 53, 104, 0.25);
+
+    z-index: 9000;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    /* Oculto inicialmente */
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(20px) scale(0.97);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s;
+}
+
+
+/* Chat abierto */
+.arx-ai-chat.active {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0) scale(1);
+}
+
+
+/* =========================================
+   CABECERA
+   ========================================= */
+
+.arx-ai-header {
+    background: linear-gradient(115deg, #073568, #075781);
+
+    color: white;
+
+    padding: 16px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.arx-ai-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.arx-ai-avatar {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #00bfc5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+
+.arx-ai-title {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.arx-ai-title strong {
+    font-size: 14px;
+}
+
+
+.arx-ai-status {
+    font-size: 11px;
+    color: #d3f0f4;
+}
+
+
+.arx-ai-close {
+    background: transparent;
+    border: none;
+
+    color: white;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    padding: 5px;
+}
+
+
+/* =========================================
+   ZONA DE MENSAJES
+   ========================================= */
+
+.arx-ai-messages {
+    flex: 1;
+
+    padding: 18px;
+
+    overflow-y: auto;
+
+    background: #f5f9fc;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 13px;
+}
+
+
+/* Mensajes generales */
+
+.arx-message {
+    max-width: 82%;
+
+    padding: 11px 14px;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    word-wrap: break-word;
+}
+
+
+/* Mensajes del asistente */
+
+.arx-message.bot {
+    align-self: flex-start;
+
+    background: white;
+
+    color: #073568;
+
+    border: 1px solid #d6e6ee;
+
+    border-bottom-left-radius: 4px;
+}
+
+
+/* Mensajes del usuario */
+
+.arx-message.user {
+    align-self: flex-end;
+
+    background: #006bb3;
+
+    color: white;
+
+    border-bottom-right-radius: 4px;
+}
+
+
+/* =========================================
+   PREGUNTAS RÁPIDAS
+   ========================================= */
+
+.arx-ai-suggestions {
+    padding: 10px 15px;
+
+    display: flex;
+    gap: 7px;
+
+    overflow-x: auto;
+
+    background: white;
+
+    border-top: 1px solid #edf3f6;
+}
+
+
+.arx-suggestion {
+    flex-shrink: 0;
+
+    border: 1px solid #afcddd;
+
+    background: white;
+
+    color: #075781;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+
+.arx-suggestion:hover {
+    background: #edf8fa;
+}
+
+
+/* =========================================
+   CAMPO PARA ESCRIBIR
+   ========================================= */
+
+.arx-ai-form {
+    display: flex;
+
+    padding: 12px;
+
+    background: white;
+
+    border-top: 1px solid #d6e6ee;
+
+    gap: 8px;
+}
+
+
+.arx-ai-input {
+    flex: 1;
+
+    border: 1px solid #d6e6ee;
+
+    border-radius: 8px;
+
+    padding: 10px 12px;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+}
+
+
+.arx-ai-input:focus {
+    border-color: #00869b;
+
+    box-shadow: 0 0 0 3px rgba(0, 134, 155, 0.10);
+}
+
+
+.arx-ai-send {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #006bb3;
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 17px;
+}
+
+
+.arx-ai-send:hover {
+    background: #073568;
+}
+
+
+/* =========================================
+   CELULARES
+   ========================================= */
+
+@media (max-width: 500px) {
+
+    .arx-ai-chat {
+        right: 12px;
+        left: 12px;
+
+        bottom: 90px;
+
+        width: auto;
+
+        height: min(560px, 70vh);
+    }
+
+    .arx-ai-button {
+        right: 18px;
+        bottom: 18px;
+
+        width: 58px;
+        height: 58px;
+    }
+}
