@@ -412,4 +412,127 @@ Un entorno más seguro mañana.
     <script src="js/index.js"></script>
   
  </body>
+
+ <!-- =========================================
+     ASISTENTE VIRTUAL ARX DIGITAL
+     ========================================= -->
+
+<button
+    class="arx-ai-button"
+    id="arxAiButton"
+    type="button"
+    aria-label="Abrir asistente virtual"
+>
+    🛡️
+</button>
+
+
+<div
+    class="arx-ai-chat"
+    id="arxAiChat"
+    aria-label="Asistente virtual ARX"
+>
+
+    <!-- Cabecera -->
+    <div class="arx-ai-header">
+
+        <div class="arx-ai-info">
+
+            <div class="arx-ai-avatar">
+                🛡️
+            </div>
+
+            <div class="arx-ai-title">
+                <strong>Asistente ARX</strong>
+                <span class="arx-ai-status">
+                    ● Asistente virtual
+                </span>
+            </div>
+
+        </div>
+
+        <button
+            class="arx-ai-close"
+            id="arxAiClose"
+            type="button"
+            aria-label="Cerrar asistente"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <!-- Mensajes -->
+    <div
+        class="arx-ai-messages"
+        id="arxAiMessages"
+        aria-live="polite"
+    >
+
+        <div class="arx-message bot">
+            ¡Hola! 👋 Soy el asistente virtual de ARX DIGITAL.
+            Puedo ayudarte con tus dudas sobre ciberseguridad.
+            ¿Qué quieres saber?
+        </div>
+
+    </div>
+
+
+    <!-- Preguntas sugeridas -->
+    <div class="arx-ai-suggestions">
+
+        <button
+            class="arx-suggestion"
+            type="button"
+            data-question="¿Qué es el phishing?"
+        >
+            ¿Qué es phishing?
+        </button>
+
+        <button
+            class="arx-suggestion"
+            type="button"
+            data-question="¿Cómo puedo crear una contraseña segura?"
+        >
+            Contraseñas seguras
+        </button>
+
+        <button
+            class="arx-suggestion"
+            type="button"
+            data-question="¿Qué hago si me roban una cuenta?"
+        >
+            Cuenta robada
+        </button>
+
+    </div>
+
+
+    <!-- Campo para escribir -->
+    <form
+        class="arx-ai-form"
+        id="arxAiForm"
+    >
+
+        <input
+            class="arx-ai-input"
+            id="arxAiInput"
+            type="text"
+            placeholder="Escribe tu pregunta..."
+            autocomplete="off"
+            maxlength="1000"
+        >
+
+        <button
+            class="arx-ai-send"
+            type="submit"
+            aria-label="Enviar mensaje"
+        >
+            ➤
+        </button>
+
+    </form>
+
+</div>
 </html>
