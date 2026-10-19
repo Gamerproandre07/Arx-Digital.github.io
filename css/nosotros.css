@@ -2,7 +2,7 @@
 
 :root { --ink: #073568; --muted: #526779; --line: #d6e6ee; --soft: #edf8fa; --radius: 10px; }
 
-{ box-sizing: border-box; }
+*{ box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body { margin: 0; color: var(--ink); background: #fff; font-family: Arial, Helvetica, sans-serif; line-height: 1.65; }
