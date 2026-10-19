@@ -326,5 +326,6 @@ document.addEventListener('DOMContentLoaded', function () {
       closeModal();
       form.reset();
     });
-  }
-});
+}
+}); 
+}); 
