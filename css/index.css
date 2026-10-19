@@ -158,7 +158,8 @@ input[type="checkbox"] { accent-color: #007c99; }
 .cta .button.secondary { background:transparent; color:#fff; border-color:#9fcbd8; }
 .cta .button:hover { background:#d5f6f5; color:#073568; }
 
-Modal de Intención de Salida (Exit-Intent Popup)
+/* Modal de Intención de Salida (Exit-Intent Popup) */
+
 .modal-overlay {
   position: fixed;
   top: 0;
