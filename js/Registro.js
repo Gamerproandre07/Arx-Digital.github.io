@@ -99,6 +99,140 @@ document.addEventListener("DOMContentLoaded", function () {
     agregarBotonVisibilidad(clave, "contraseña");
     agregarBotonVisibilidad(confirmarClave, "confirmación de contraseña");
 
+    
+    // ==============================================
+    // INDICADOR DE SEGURIDAD DE CONTRASEÑA
+    // ==============================================
+
+    const indicador = document.createElement("div");
+    indicador.className = "indicador-clave";
+    indicador.setAttribute("aria-live", "polite");
+
+    const textoSeguridad = document.createElement("p");
+    textoSeguridad.className = "texto-seguridad";
+
+    const barraSeguridad = document.createElement("div");
+    barraSeguridad.className = "barra-seguridad";
+
+    const progresoSeguridad = document.createElement("div");
+    progresoSeguridad.className = "progreso-seguridad";
+
+    barraSeguridad.appendChild(progresoSeguridad);
+    indicador.append(barraSeguridad, textoSeguridad);
+
+    // Colocar el indicador debajo de la contraseña
+    clave.parentElement.parentElement.appendChild(indicador);
+
+
+    // ==============================================
+    // EVALUAR LA SEGURIDAD DE LA CONTRASEÑA
+    // ==============================================
+
+    function evaluarContrasena(valor) {
+
+        let puntos = 0;
+
+        if (valor.length >= 8) puntos++;
+        if (valor.length >= 12) puntos++;
+
+        if (/[a-z]/.test(valor) && /[A-Z]/.test(valor)) {
+            puntos++;
+        }
+
+        if (/\d/.test(valor)) puntos++;
+
+        if (/[^A-Za-z0-9]/.test(valor)) puntos++;
+
+        return puntos;
+    }
+
+
+    
+
+    function actualizarSeguridad() {
+
+        const valor = clave.value;
+        const puntos = evaluarContrasena(valor);
+
+        let nivel = "Débil";
+        let porcentaje = 25;
+
+        if (valor.length === 0) {
+
+            textoSeguridad.textContent = "";
+            progresoSeguridad.style.width = "0%";
+            progresoSeguridad.style.backgroundColor = "transparent";
+
+            return;
+        }
+
+        if (valor.length < 8) {
+
+            nivel = "Demasiado corta";
+            porcentaje = 15;
+
+        } else if (puntos <= 2) {
+
+            nivel = "Débil";
+            porcentaje = 35;
+
+        } else if (puntos <= 3) {
+
+            nivel = "Media";
+            porcentaje = 65;
+
+        } else {
+
+            nivel = "Fuerte";
+            porcentaje = 100;
+        }
+
+        textoSeguridad.textContent =
+            `Seguridad estimada: ${nivel}`;
+
+        progresoSeguridad.style.width = `${porcentaje}%`;
+
+        if (porcentaje <= 35) {
+
+            progresoSeguridad.style.backgroundColor = "#ef4444";
+
+        } else if (porcentaje <= 65) {
+
+            progresoSeguridad.style.backgroundColor = "#f59e0b";
+
+        } else {
+
+            progresoSeguridad.style.backgroundColor = "#22c55e";
+        }
+    }
+
+    // Actualizar mientras se escribe
+    clave.addEventListener("input", actualizarSeguridad);
+
+
+  
+
+    const campos = formulario.querySelectorAll(".campo input");
+
+    campos.forEach(function (campo) {
+
+        // Cuando el usuario selecciona un campo
+        campo.addEventListener("focus", function () {
+
+            campo.classList.add("campo-activo");
+
+        });
+
+        // Cuando el usuario sale del campo
+        campo.addEventListener("blur", function () {
+
+            campo.classList.remove("campo-activo");
+
+        });
+
+    });
+
+
     // VALIDAR Y ENVIAR EL FORMULARIO A SUPABASE
     formulario.addEventListener("submit", async function (evento) {
         evento.preventDefault();
