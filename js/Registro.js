@@ -233,64 +233,163 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // VALIDAR Y ENVIAR EL FORMULARIO A SUPABASE
+ 
+    // ==========================================
+    // REGISTRAR USUARIOS CON SUPABASE AUTH
+    // ==========================================
+
     formulario.addEventListener("submit", async function (evento) {
+
         evento.preventDefault();
+
+        // Validar contraseñas
         validarContrasenas();
 
-        if (!formulario.checkValidity()) {
-            formulario.reportValidity();
+        // Verificar campos obligatorios
+        if (!formulario.reportValidity()) {
             return;
         }
 
+        // Verificar contraseñas iguales
         if (clave.value !== confirmarClave.value) {
+
+            confirmarClave.setCustomValidity(
+                "Las contraseñas no coinciden."
+            );
+
             confirmarClave.reportValidity();
             confirmarClave.focus();
             return;
         }
 
-        if (aceptarTerminos && !aceptarTerminos.checked) {
-            mensajeFormulario.textContent = "Debes aceptar los Términos y Condiciones.";
-            mensajeFormulario.className = "mensaje-formulario mensaje-error";
-            aceptarTerminos.focus();
+        // Verificar aceptación de términos
+        if (!aceptarTerminos || !aceptarTerminos.checked) {
+
+            mensajeFormulario.textContent =
+                "Debes aceptar los Términos y Condiciones.";
+
+            mensajeFormulario.className =
+                "mensaje-formulario mensaje-error";
+
+            aceptarTerminos?.focus();
             return;
         }
 
-        const botonSubmit = formulario.querySelector("button[type='submit']");
-        if (botonSubmit) botonSubmit.disabled = true;
+        // Obtener los datos
+        const nombreUsuario = nombre.value.trim();
+        const correoUsuario = correo.value.trim();
+        const contrasenaUsuario = clave.value;
 
-        mensajeFormulario.textContent = "Registrando usuario...";
+        // Botón de registro
+        const botonSubmit =
+            formulario.querySelector('button[type="submit"]');
+
+        if (botonSubmit?.disabled) return;
+
+        if (botonSubmit) {
+            botonSubmit.disabled = true;
+            botonSubmit.textContent = "Registrando...";
+        }
+
+        mensajeFormulario.textContent =
+            "Creando cuenta de manera segura...";
+
         mensajeFormulario.className = "mensaje-formulario";
 
         try {
-            // Inserción directa en tu tabla 'Registro'[cite: 1]
-            const { error } = await supabaseClient
-                .from("Registro")
-                .insert([
-                    {
-                        Nombre_completo: nombre.value.trim(),
-                        Correo_electronico: correo.value.trim(),
-                        Contraseña: clave.value
-                    }
-                ]);
 
+            // URL de retorno después de confirmar
+            const urlLogin = new URL(
+                "login.html",
+                window.location.href
+            ).href;
+
+            // CREAR CUENTA CON SUPABASE AUTH
+            const { data, error } =
+                await supabaseClient.auth.signUp({
+
+                    email: correoUsuario,
+
+                    password: contrasenaUsuario,
+
+                    options: {
+
+                        emailRedirectTo: urlLogin,
+
+                        data: {
+                            nombre_completo: nombreUsuario
+                        }
+
+                    }
+
+                });
+
+            // Comprobar errores de Supabase
             if (error) {
                 throw error;
             }
 
-            mensajeFormulario.textContent = "¡Registro exitoso! Datos guardados en Supabase.";
-            mensajeFormulario.className = "mensaje-formulario mensaje-exito";
+            // Comprobar respuesta
+            if (!data || !data.user) {
+                throw new Error(
+                    "No se pudo completar la solicitud de registro."
+                );
+            }
 
+            // Confirmación para el usuario
+            if (data.session) {
+
+                mensajeFormulario.textContent =
+                    "Cuenta creada correctamente. " +
+                    "Ya puedes utilizar tu cuenta.";
+
+            } else {
+
+                mensajeFormulario.textContent =
+                    "Solicitud de registro recibida. " +
+                    "Revisa tu correo electrónico para " +
+                    "confirmar tu cuenta. Si ya tienes una, " +
+                    "puedes intentar iniciar sesión.";
+
+            }
+
+            mensajeFormulario.className =
+                "mensaje-formulario mensaje-exito";
+
+            // Limpiar el formulario
             formulario.reset();
+
+            // Limpiar validación anterior
             confirmarClave.setCustomValidity("");
-            actualizarSeguridad();
+
+            // Reiniciar el indicador visual
+            if (typeof actualizarSeguridad === "function") {
+                actualizarSeguridad();
+            }
 
         } catch (error) {
-            console.error("Error al registrar en Supabase:", error.message);
-            mensajeFormulario.textContent = `Error al registrar: ${error.message}`;
-            mensajeFormulario.className = "mensaje-formulario mensaje-error";
+
+            console.error(
+                "Error en Supabase Auth:",
+                error
+            );
+
+            mensajeFormulario.textContent =
+                "No se pudo completar el registro: " +
+                (error.message || "Intenta nuevamente.");
+
+            mensajeFormulario.className =
+                "mensaje-formulario mensaje-error";
+
         } finally {
-            if (botonSubmit) botonSubmit.disabled = false;
+
+            if (botonSubmit) {
+                botonSubmit.disabled = false;
+                botonSubmit.textContent = "Crear cuenta";
+            }
+
         }
+
     });
+
 });
