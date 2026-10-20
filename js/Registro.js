@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const confirmarClave = document.querySelector("#clave2");
     const aceptarTerminos = document.querySelector("#acepto-terminos");
 
-    if (!formulario || !clave || !confirmarClave) return;
+    if (!formulario || !clave || !confirmarClave) {
+        console.error("Faltan elementos críticos del formulario en el DOM.");
+        return;
+    }
 
     // CREAR UN ESPACIO PARA LOS MENSAJES
     const mensajeFormulario = document.createElement("p");
@@ -25,9 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
     mensajeFormulario.setAttribute("aria-live", "polite");
     formulario.appendChild(mensajeFormulario);
 
-    // FUNCIÓN ROBUSTA PARA ENVOLVER EL INPUT Y AGREGAR EL BOTÓN DE VISIBILIDAD
+    // FUNCIÓN PARA ENVOLVER EL INPUT Y AGREGAR EL BOTÓN DE VISIBILIDAD
     function agregarBotonVisibilidad(inputElement, nombreCampo) {
-        if (inputElement.parentElement.classList.contains("password-wrapper")) return;
+        if (!inputElement || inputElement.parentElement.classList.contains("password-wrapper")) return;
 
         const wrapper = document.createElement("div");
         wrapper.className = "password-wrapper";
@@ -56,8 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
         botonToggle.style.color = "#666666";
         botonToggle.style.fontSize = "1rem";
         botonToggle.style.padding = "0";
-        botonToggle.style.width = "auto";
-        botonToggle.style.height = "auto";
 
         const icono = document.createElement("i");
         icono.className = "fa-solid fa-eye-slash";
@@ -98,99 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
     agregarBotonVisibilidad(clave, "contraseña");
     agregarBotonVisibilidad(confirmarClave, "confirmación de contraseña");
 
-    // INDICADOR DE SEGURIDAD DE LA CONTRASEÑA
-    const indicador = document.createElement("div");
-    indicador.className = "indicador-clave";
-    indicador.setAttribute("aria-live", "polite");
-    indicador.style.marginTop = "8px";
-
-    const textoSeguridad = document.createElement("p");
-    textoSeguridad.className = "texto-seguridad";
-    textoSeguridad.style.fontSize = "0.8rem";
-    textoSeguridad.style.color = "#666";
-
-    const barraSeguridad = document.createElement("div");
-    barraSeguridad.className = "barra-seguridad";
-    barraSeguridad.style.height = "4px";
-    barraSeguridad.style.width = "100%";
-    barraSeguridad.style.background = "#e5e5e5";
-    barraSeguridad.style.borderRadius = "2px";
-    barraSeguridad.style.marginTop = "4px";
-
-    const progresoSeguridad = document.createElement("div");
-    progresoSeguridad.className = "progreso-seguridad";
-    progresoSeguridad.style.height = "100%";
-    progresoSeguridad.style.width = "0%";
-    progresoSeguridad.style.borderRadius = "2px";
-    progresoSeguridad.style.transition = "width 0.3s ease, background-color 0.3s ease";
-
-    barraSeguridad.appendChild(progresoSeguridad);
-    indicador.append(barraSeguridad, textoSeguridad);
-
-    clave.parentElement.parentElement.appendChild(indicador);
-
-    function evaluarContrasena(valor) {
-        let puntos = 0;
-        if (valor.length >= 8) puntos++;
-        if (valor.length >= 12) puntos++;
-        if (/[a-z]/.test(valor) && /[A-Z]/.test(valor)) puntos++;
-        if (/\d/.test(valor)) puntos++;
-        if (/[^A-Za-z0-9]/.test(valor)) puntos++;
-        return puntos;
-    }
-
-    function actualizarSeguridad() {
-        const valor = clave.value;
-        const puntos = evaluarContrasena(valor);
-
-        let nivel = "Débil";
-        let porcentaje = 25;
-
-        if (valor.length === 0) {
-            textoSeguridad.textContent = "";
-            progresoSeguridad.style.width = "0%";
-            progresoSeguridad.style.backgroundColor = "transparent";
-            return;
-        }
-
-        if (valor.length < 8) {
-            nivel = "Demasiado corta";
-            porcentaje = 15;
-        } else if (puntos <= 2) {
-            nivel = "Débil";
-            porcentaje = 35;
-        } else if (puntos <= 3) {
-            nivel = "Media";
-            porcentaje = 65;
-        } else {
-            nivel = "Fuerte";
-            porcentaje = 100;
-        }
-
-        textoSeguridad.textContent = `Seguridad estimada: ${nivel}`;
-        progresoSeguridad.style.width = `${porcentaje}%`;
-
-        if (porcentaje <= 35) {
-            progresoSeguridad.style.backgroundColor = "#ef4444";
-        } else if (porcentaje <= 65) {
-            progresoSeguridad.style.backgroundColor = "#f59e0b";
-        } else {
-            progresoSeguridad.style.backgroundColor = "#22c55e";
-        }
-    }
-
-    clave.addEventListener("input", actualizarSeguridad);
-
-    const campos = formulario.querySelectorAll("input");
-    campos.forEach(function (campo) {
-        campo.addEventListener("focus", function () {
-            campo.classList.add("campo-activo");
-        });
-        campo.addEventListener("blur", function () {
-            campo.classList.remove("campo-activo");
-        });
-    });
-
     // VALIDAR Y ENVIAR EL FORMULARIO A SUPABASE
     formulario.addEventListener("submit", async function (evento) {
         evento.preventDefault();
@@ -207,28 +115,28 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        if (!aceptarTerminos.checked) {
+        if (aceptarTerminos && !aceptarTerminos.checked) {
             mensajeFormulario.textContent = "Debes aceptar los Términos y Condiciones.";
             mensajeFormulario.className = "mensaje-formulario mensaje-error";
-            aceptaTerminos.focus();
+            aceptarTerminos.focus();
             return;
         }
 
-        // Deshabilitar botón temporalmente para evitar doble envío
         const botonSubmit = formulario.querySelector("button[type='submit']");
-        botonSubmit.disabled = true;
+        if (botonSubmit) botonSubmit.disabled = true;
+
         mensajeFormulario.textContent = "Registrando usuario...";
         mensajeFormulario.className = "mensaje-formulario";
 
         try {
-            // Insertar datos en la tabla 'Registro' respetando las mayúsculas/minúsculas de tus columnas
-            const { data, error } = await supabaseClient
+            // Inserción directa en tu tabla 'Registro'[cite: 1]
+            const { error } = await supabaseClient
                 .from("Registro")
                 .insert([
                     {
                         Nombre_completo: nombre.value.trim(),
                         Correo_electronico: correo.value.trim(),
-                        Contraseña: clave.value // Nota: En producción real se recomienda encriptar la contraseña
+                        Contraseña: clave.value
                     }
                 ]);
 
@@ -236,20 +144,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 throw error;
             }
 
-            mensajeFormulario.textContent = "¡Registro exitoso! Cuenta creada correctamente en la base de datos.";
+            mensajeFormulario.textContent = "¡Registro exitoso! Datos guardados en Supabase.";
             mensajeFormulario.className = "mensaje-formulario mensaje-exito";
 
-            // Limpiar formulario
             formulario.reset();
             confirmarClave.setCustomValidity("");
-            actualizarSeguridad();
 
         } catch (error) {
-            console.error("Error al registrar:", error.message);
-            mensajeFormulario.textContent = `Hubo un error al registrar: ${error.message}`;
+            console.error("Error al registrar en Supabase:", error.message);
+            mensajeFormulario.textContent = `Error al registrar: ${error.message}`;
             mensajeFormulario.className = "mensaje-formulario mensaje-error";
         } finally {
-            botonSubmit.disabled = false;
+            if (botonSubmit) botonSubmit.disabled = false;
         }
     });
 });
