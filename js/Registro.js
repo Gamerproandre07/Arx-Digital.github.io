@@ -1,8 +1,17 @@
 "use strict";
 
+// CONFIGURACIÓN DE SUPABASE
+const SUPABASE_URL = "https://ipxswlfragitdknatffc.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_UwSZ_MRdeUDhwyOVFd-ldQ_VIaHm8b1";
+
+// Inicializar cliente de Supabase
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 document.addEventListener("DOMContentLoaded", function () {
     // SELECCIONAR LOS ELEMENTOS DEL FORMULARIO
     const formulario = document.querySelector(".registro form");
+    const nombre = document.querySelector("#nombre");
+    const correo = document.querySelector("#correo");
     const clave = document.querySelector("#clave");
     const confirmarClave = document.querySelector("#clave2");
     const aceptarTerminos = document.querySelector("#acepto-terminos");
@@ -18,31 +27,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // FUNCIÓN ROBUSTA PARA ENVOLVER EL INPUT Y AGREGAR EL BOTÓN DE VISIBILIDAD
     function agregarBotonVisibilidad(inputElement, nombreCampo) {
-        // Evitamos duplicar si ya existe
         if (inputElement.parentElement.classList.contains("password-wrapper")) return;
 
-        // 1. Creamos un contenedor envolvente para manejar el posicionamiento del icono
         const wrapper = document.createElement("div");
         wrapper.className = "password-wrapper";
         wrapper.style.position = "relative";
         wrapper.style.display = "block";
         wrapper.style.width = "100%";
 
-        // 2. Reemplazamos el input en el DOM colocando el wrapper en su lugar
         inputElement.parentNode.insertBefore(wrapper, inputElement);
         wrapper.appendChild(inputElement);
 
-        // Ajustamos el padding del input para que el texto no choque con el icono
         inputElement.style.paddingRight = "40px";
         inputElement.style.boxSizing = "border-box";
 
-        // 3. Creamos el botón del ícono del ojo
         const botonToggle = document.createElement("button");
         botonToggle.type = "button";
         botonToggle.className = "toggle-visibilidad";
         botonToggle.setAttribute("aria-label", `Mostrar u ocultar ${nombreCampo}`);
         
-        // Estilos limpios inline para asegurar que no herede los estilos de los botones principales del formulario
         botonToggle.style.position = "absolute";
         botonToggle.style.right = "12px";
         botonToggle.style.top = "50%";
@@ -57,18 +60,16 @@ document.addEventListener("DOMContentLoaded", function () {
         botonToggle.style.height = "auto";
 
         const icono = document.createElement("i");
-        icono.className = "fa-solid fa-eye-slash"; // Ícono inicial de ojo cerrado
+        icono.className = "fa-solid fa-eye-slash";
         
         botonToggle.appendChild(icono);
         wrapper.appendChild(botonToggle);
 
-        // 4. Evento de clic para alternar tipo de input y cambiar el icono
         botonToggle.addEventListener("click", function () {
             const tipoActual = inputElement.getAttribute("type");
             const nuevoTipo = tipoActual === "password" ? "text" : "password";
             inputElement.setAttribute("type", nuevoTipo);
 
-            // Alternamos las clases de FontAwesome
             icono.classList.toggle("fa-eye");
             icono.classList.toggle("fa-eye-slash");
         });
@@ -91,11 +92,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Validar mientras el usuario escribe
     clave.addEventListener("input", validarContrasenas);
     confirmarClave.addEventListener("input", validarContrasenas);
 
-    // INYECTAR LOS BOTONES DE VISIBILIDAD EN AMBOS CAMPOS DE CONTRASEÑA
     agregarBotonVisibilidad(clave, "contraseña");
     agregarBotonVisibilidad(confirmarClave, "confirmación de contraseña");
 
@@ -128,7 +127,6 @@ document.addEventListener("DOMContentLoaded", function () {
     barraSeguridad.appendChild(progresoSeguridad);
     indicador.append(barraSeguridad, textoSeguridad);
 
-    // Insertamos el indicador de seguridad debajo del wrapper de la clave principal
     clave.parentElement.parentElement.appendChild(indicador);
 
     function evaluarContrasena(valor) {
@@ -183,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     clave.addEventListener("input", actualizarSeguridad);
 
-    // EFECTOS VISUALES AL INTERACTUAR
     const campos = formulario.querySelectorAll("input");
     campos.forEach(function (campo) {
         campo.addEventListener("focus", function () {
@@ -194,62 +191,65 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // VALIDAR EL ENVÍO DEL FORMULARIO
-    formulario.addEventListener("submit", function (evento) {
+    // VALIDAR Y ENVIAR EL FORMULARIO A SUPABASE
+    formulario.addEventListener("submit", async function (evento) {
+        evento.preventDefault();
         validarContrasenas();
 
         if (!formulario.checkValidity()) {
-            evento.preventDefault();
             formulario.reportValidity();
             return;
         }
 
         if (clave.value !== confirmarClave.value) {
-            evento.preventDefault();
             confirmarClave.reportValidity();
             confirmarClave.focus();
             return;
         }
 
         if (!aceptarTerminos.checked) {
-            evento.preventDefault();
             mensajeFormulario.textContent = "Debes aceptar los Términos y Condiciones.";
             mensajeFormulario.className = "mensaje-formulario mensaje-error";
-            aceptarTerminos.focus();
+            aceptaTerminos.focus();
             return;
         }
 
-        evento.preventDefault();
-         mensajeFormulario.textContent =
-        "Validación de ejemplo correcta. Este proyecto académico todavía " +
-        "no crea cuentas ni guarda los datos ingresados.";
+        // Deshabilitar botón temporalmente para evitar doble envío
+        const botonSubmit = formulario.querySelector("button[type='submit']");
+        botonSubmit.disabled = true;
+        mensajeFormulario.textContent = "Registrando usuario...";
+        mensajeFormulario.className = "mensaje-formulario";
 
-        mensajeFormulario.className = "mensaje-formulario mensaje-exito";
+        try {
+            // Insertar datos en la tabla 'Registro' respetando las mayúsculas/minúsculas de tus columnas
+            const { data, error } = await supabaseClient
+                .from("Registro")
+                .insert([
+                    {
+                        Nombre_completo: nombre.value.trim(),
+                        Correo_electronico: correo.value.trim(),
+                        Contraseña: clave.value // Nota: En producción real se recomienda encriptar la contraseña
+                    }
+                ]);
 
-// Vaciar las contraseñas de prueba.
-     clave.value = "";
-    confirmarClave.value = "";
-
-    confirmarClave.setCustomValidity("");
-    actualizarSeguridad();
-    });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    const clave = document.getElementById("clave");
-    const clave2 = document.getElementById("clave2");
-
-    // Verificamos que los campos existan en la página antes de agregar los eventos
-    if (clave && clave2) {
-        function comparar() {
-            if (clave.value !== clave2.value) {
-                clave2.setCustomValidity("Las contraseñas no coinciden.");
-            } else {
-                clave2.setCustomValidity("");
+            if (error) {
+                throw error;
             }
-        }
 
-        // Escuchamos el evento 'input' mientras el usuario escribe en cualquiera de los dos campos
-        clave.addEventListener("input", comparar);
-        clave2.addEventListener("input", comparar);
-    }
+            mensajeFormulario.textContent = "¡Registro exitoso! Cuenta creada correctamente en la base de datos.";
+            mensajeFormulario.className = "mensaje-formulario mensaje-exito";
+
+            // Limpiar formulario
+            formulario.reset();
+            confirmarClave.setCustomValidity("");
+            actualizarSeguridad();
+
+        } catch (error) {
+            console.error("Error al registrar:", error.message);
+            mensajeFormulario.textContent = `Hubo un error al registrar: ${error.message}`;
+            mensajeFormulario.className = "mensaje-formulario mensaje-error";
+        } finally {
+            botonSubmit.disabled = false;
+        }
+    });
 });
