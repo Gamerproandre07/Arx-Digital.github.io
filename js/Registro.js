@@ -283,6 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             formulario.reset();
             confirmarClave.setCustomValidity("");
+            actualizarSeguridad();
 
         } catch (error) {
             console.error("Error al registrar en Supabase:", error.message);
