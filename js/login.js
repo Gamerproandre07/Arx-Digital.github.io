@@ -156,26 +156,62 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Validación de ejemplo: no envía correos ni códigos.
-    if (recoverEmailForm && recoveryEmail) {
-        recoverEmailForm.addEventListener("submit", function (evento) {
-            evento.preventDefault();
+    
+        recoverEmailForm.addEventListener("submit", async function (evento) {
+        evento.preventDefault();
 
-            if (!recoverEmailForm.reportValidity()) return;
+        if (!recoverEmailForm.reportValidity()) return;
 
-            mostrarMensaje(
-                recoveryEmailMessage,
-                "Demostración académica: el formato del correo es válido. " +
-                "No se ha comprobado si existe una cuenta ni se ha " +
-                "enviado un código. La recuperación aún no está disponible."
+        const correo = recoveryEmail.value.trim();
+
+        const boton = recoverEmailForm.querySelector(
+        'button[type="submit"]'
+        );
+
+    boton.disabled = true;
+    boton.textContent = "Enviando...";
+
+    try {
+        const urlRetorno = new URL(
+            "login.html",
+            window.location.href
+        ).href;
+
+        const { error } =
+            await supabaseClient.auth.resetPasswordForEmail(
+                correo,
+                {
+                    redirectTo: urlRetorno
+                }
             );
 
-            recoverEmailForm.reset();
-        });
-    }
+        if (error) throw error;
 
-    // Se conserva la validación para la futura implementación.
-    // No se abre esta ventana como si el correo ya estuviera verificado.
+        mostrarMensaje(
+            recoveryEmailMessage,
+            "Si existe una cuenta asociada a este correo, " +
+            "recibirás un enlace para restablecer tu contraseña."
+        );
+
+        recoverEmailForm.reset();
+
+    } catch (error) {
+        console.error("Error de recuperación:", error);
+
+        mostrarMensaje(
+            recoveryEmailMessage,
+            "No se pudo procesar la solicitud. Inténtalo nuevamente.",
+            true
+        );
+
+    } finally {
+        boton.disabled = false;
+        boton.textContent = "Continuar";
+    }
+});
+
+
+
     if (changePasswordForm && newPassword && confirmPassword) {
         changePasswordForm.addEventListener("submit", function (evento) {
             evento.preventDefault();
