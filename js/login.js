@@ -3,6 +3,17 @@
 document.addEventListener("DOMContentLoaded", function () {
     const formularioLogin = document.querySelector(".login-card form");
     const passwordInput = document.getElementById("password");
+     // Vaciar la contraseña al cargar la página
+    if (passwordInput) {
+        passwordInput.value = "";
+    }
+
+    // Vaciar nuevamente si el navegador restaura el formulario
+    window.addEventListener("pageshow", () => {
+        if (passwordInput) {
+            passwordInput.value = "";
+        }
+    });
     const iconToggle = document.getElementById("iconToggle");
     const forgotPasswordLink = document.getElementById("forgotPasswordLink");
 
