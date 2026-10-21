@@ -1,6 +1,29 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
+    
+    // ==========================================
+    // CONEXIÓN CON SUPABASE
+    // ==========================================
+
+    const SUPABASE_URL =
+        "https://ipxswlfragitdknatffc.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_UwSZ_MRdeUDhwyOVFd-ldQ_VIaHm8b1";
+
+    // Verificar que la biblioteca esté disponible
+    if (!window.supabase) {
+        console.error("No se cargó la biblioteca de Supabase.");
+        return;
+    }
+
+    // Crear el cliente de Supabase
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
     const formularioLogin = document.querySelector(".login-card form");
     const passwordInput = document.getElementById("password");
     
