@@ -35,6 +35,22 @@ document.addEventListener("DOMContentLoaded", function () {
         if (passwordInput) {
             passwordInput.value = "";
         }
+    
+    const verificationModal =
+    document.getElementById("verificationModal");
+
+    const verificationForm =
+    document.getElementById("verificationForm");
+
+    const verificationCode =
+    document.getElementById("verificationCode");
+    
+    const verificationMessage =
+    document.getElementById("verificationMessage");
+
+    // Guardaremos el correo durante la recuperación
+    let correoRecuperacion = "";
+    
     });
     const iconToggle = document.getElementById("iconToggle");
     const forgotPasswordLink = document.getElementById("forgotPasswordLink");
