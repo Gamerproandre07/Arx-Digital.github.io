@@ -223,6 +223,70 @@
     </div>
 </div>
 
+<!-- MODAL PARA VERIFICAR EL CÓDIGO -->
+<div id="verificationModal"
+     class="password-modal"
+     aria-hidden="true">
+
+    <div class="password-modal-content"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="verificationTitle">
+
+        <button type="button"
+                class="password-close"
+                id="closeVerificationModal"
+                aria-label="Cerrar">
+            &times;
+        </button>
+
+        <h2 id="verificationTitle">
+            Verificar código
+        </h2>
+
+        <p class="password-subtitle">
+            Introduce el código de 6 dígitos
+            que enviamos a tu correo electrónico.
+        </p>
+
+        <form id="verificationForm">
+
+            <div class="input-group">
+                <label for="verificationCode">
+                    Código de verificación
+                </label>
+
+                <input
+                    type="text"
+                    id="verificationCode"
+                    name="codigo"
+                    placeholder="000000"
+                    inputmode="numeric"
+                    pattern="[0-9]{6}"
+                    maxlength="6"
+                    autocomplete="one-time-code"
+                    required
+                >
+            </div>
+
+            <p id="verificationMessage"
+               role="status"
+               aria-live="polite"></p>
+
+            <button type="submit" class="btn-submit">
+                Verificar código
+            </button>
+
+            <button type="button"
+                    class="btn-cancel"
+                    id="cancelVerificationModal">
+                Cancelar
+            </button>
+
+        </form>
+    </div>
+</div>
+
 
 <!-- Modal para cambiar contraseña -->
 <div id="passwordModal"
