@@ -314,3 +314,34 @@ main details[open] > ol {
         transform: none !important;
     }
 }
+/* Fondos de imagen en las tarjetas de Recursos */
+[class*="recurso-"] .visual {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+[class*="recurso-"] .visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+[class*="recurso-"] .visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(237, 248, 250, 0.80); /* mismo celeste de tu --soft; prueba entre 0.70 y 0.88 */
+  z-index: -1;
+}
+
+.recurso-phishing .visual::before     { background-image: url("../img/recurso-phishing.jpg.png"); }
+.recurso-privacidad .visual::before   { background-image: url("../img/recurso-privacidad.jpg.png"); }
+.recurso-oficina .visual::before      { background-image: url("../img/recurso-oficina.jpg.png"); }
+.recurso-contrasenas .visual::before  { background-image: url("../img/recurso-contrasenas.jpg.png"); }
+.recurso-dospasos .visual::before     { background-image: url("../img/recurso-dospasos.jpg.png"); }
+.recurso-ciberataques .visual::before { background-image: url("../img/recurso-ciberataques.jpg.png"); }
+.recurso-ransomware .visual::before   { background-image: url("../img/recurso-ransomware.jpg.png"); }
+.recurso-compras .visual::before      { background-image: url("../img/recurso-compras.jpg.png"); }
+.recurso-postcompras .visual::before  { background-image: url("../img/recurso-postcompras.jpg.png"); }
