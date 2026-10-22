@@ -33,55 +33,9 @@
      <a href="Contacto.html">
       Contacto
      </a>
-     <!-- ACCESO / CUENTA DEL USUARIO -->
-<div class="user-menu" id="userMenu">
-
-    <!-- Se muestra cuando NO hay sesión -->
-    <a href="login.html" class="login-link" id="loginLink">
-        Acceso
-    </a>
-
-    <!-- Se muestra cuando SÍ hay sesión -->
-    <button
-        type="button"
-        class="user-button"
-        id="userButton"
-        aria-expanded="false"
-        hidden
-    >
-        <span class="user-avatar">👤</span>
-
-        <span class="user-button-info">
-            <strong id="navUserName">Usuario</strong>
-            <small id="navUserEmail">correo@ejemplo.com</small>
-        </span>
-
-        <span class="user-arrow">▾</span>
-    </button>
-
-    <!-- MENÚ DESPLEGABLE -->
-    <div class="user-dropdown" id="userDropdown" hidden>
-
-        <div class="user-dropdown-header">
-            <strong id="dropdownUserName">Usuario</strong>
-            <span id="dropdownUserEmail">
-                correo@ejemplo.com
-            </span>
-        </div>
-
-        <div class="user-dropdown-divider"></div>
-
-        <button
-            type="button"
-            class="logout-button"
-            id="logoutButton"
-        >
-            Cerrar sesión
-        </button>
-
-    </div>
-
-</div>
+     <a href="login.html">
+      Acceso
+     </a>
     </nav>
    </div>
   </header>
@@ -197,107 +151,70 @@
    </section>
    <section class="alerts" id="alerts">
     <p class="eyebrow section-label">
-     02 / MANTENTE INFORMADO
+        02 / MANTENTE INFORMADO
     </p>
     <h2>
-     Alertas Recientes
+        Alertas Recientes
     </h2>
     <p class="editorial-note">
-     Contenido del proyecto original. Las cifras y fechas de estas alertas están pendientes de verificación.
+        Contenido del proyecto original. Las cifras y fechas de estas alertas están pendientes de verificación.
     </p>
+    
     <article class="news">
-     <div>
-      <p class="eyebrow">
-       PREVENCIÓN DIGITAL
-      </p>
-      <h3>
-       Últimas estafas detectadas en la región y cómo evitarlas
-      </h3>
-      <p>
-       Cuidado con el nuevo fraude por SMS, El fraude informático se consolidó como el ciberdelito más denunciado en el Perú, registrando 19,602 casos entre enero y julio de 2026.
-      </p>
-     </div>
-     <div class="visual">
-      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 64 64">
-       <path d="M6 14h52v37H6ZM6 14l26 22 26-22">
-       </path>
-      </svg>
-      <span>
-       Mantente informado
-      </span>
-     </div>
+        <div>
+            <p class="eyebrow">PREVENCIÓN DIGITAL</p>
+            <h3>Últimas estafas detectadas en la región y cómo evitarlas</h3>
+            <p>Cuidado con el nuevo fraude por SMS, El fraude informático se consolidó como el ciberdelito más denunciado en el Perú, registrando 19,602 casos entre enero y julio de 2026.</p>
+        </div>
+        <!-- Contenedor visual cambiado a imagen -->
+        <div class="visual image-visual">
+            <img src="img/mantente informado.png" alt="Ilustración de alerta por SMS" />
+        </div>
     </article>
+
     <article class="news">
-     <div>
-      <p class="eyebrow">
-       PREVENCIÓN DIGITAL
-      </p>
-      <h3>
-       Más de 350 mil ataques informáticos y el fraude lideran las denuncias en el Perú
-      </h3>
-      <p>
-       Perú superó las 353,000 detecciones de ciberataques entre enero y mayo de 2026, donde más del 45% de los casos emplearon tácticas de ingeniería social.
-      </p>
-     </div>
-     <div class="visual">
-      <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 64 64">
-       <path d="M24 6h16v16H24ZM5 43h16v16H5ZM43 43h16v16H43ZM32 22v12M13 43v-9h38v9">
-       </path>
-      </svg>
-      <span>
-       Mantente informado
-      </span>
-     </div>
+        <div>
+            <p class="eyebrow">PREVENCIÓN DIGITAL</p>
+            <h3>Más de 350 mil ataques informáticos y el fraude lideran las denuncias en el Perú</h3>
+            <p>Perú superó las 353,000 detecciones de ciberataques entre enero y mayo de 2026, donde más del 45% de los casos emplearon tácticas de ingeniería social.</p>
+        </div>
+        <!-- Contenedor visual cambiado a imagen -->
+        <div class="visual image-visual">
+            <img src="img/grafico de ataques informaticos.jpg" alt="Gráfico de ataques informáticos" />
+        </div>
     </article>
-   </section>
+</section>
    <section class="cases" id="cases">
     <p class="eyebrow section-label">
-     03 / APRENDE DE LOS INCIDENTES
+        03 / APRENDE DE LOS INCIDENTES
     </p>
     <h2>
-     Casos de Riesgo
+        Casos de Riesgo
     </h2>
     <div class="grid two">
-     <article class="card">
-      <div class="visual">
-       <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 64 64">
-        <path d="M18 28v-9a14 14 0 0 1 28 0v9M13 28h38v30H13ZM32 40v8">
-        </path>
-       </svg>
-       <span>
-        Interbank (2024-2025)
-       </span>
-      </div>
-      <div class="card-body">
-       <h3>
-        Interbank (2024-2025)
-       </h3>
-       <p>
-        El banco sufrió una masiva filtración de datos de millones de clientes tras un ataque cibernético y extorsión, comprometiendo información sensible de cuentas.
-       </p>
-      </div>
-     </article>
-     <article class="card">
-      <div class="visual">
-       <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 64 64">
-        <path d="M16 5h23l12 12v42H16ZM39 5v14h12M24 30h19M24 39h19M24 48h12">
-        </path>
-       </svg>
-       <span>
-        Inkafarma (2025)
-       </span>
-      </div>
-      <div class="card-body">
-       <h3>
-        Inkafarma (2025)
-       </h3>
-       <p>
-        La conocida cadena farmacéutica enfrentó una alerta gubernamental de seguridad por la supuesta filtración y exposición de datos de casi 4 millones de usuarios.
-       </p>
-      </div>
-     </article>
+        <article class="card">
+            <!-- Contenedor visual cambiado a imagen con la ruta de tu preferencia -->
+            <div class="visual image-visual">
+                <img src="img/interbank.png" alt="Caso Interbank" />
+            </div>
+            <div class="card-body">
+                <h3>Interbank (2024-2025)</h3>
+                <p>El banco sufrió una masiva filtración de datos de millones de clientes tras un ataque cibernético y extorsión, comprometiendo información sensible de cuentas.</p>
+            </div>
+        </article>
+
+        <article class="card">
+            <!-- Contenedor visual cambiado a imagen con la ruta de tu preferencia -->
+            <div class="visual image-visual">
+                <img src="img/iinkafarma.jpg" alt="Caso Inkafarma" />
+            </div>
+            <div class="card-body">
+                <h3>Inkafarma (2025)</h3>
+                <p>La conocida cadena farmacéutica enfrentó una alerta gubernamental de seguridad por la supuesta filtración y exposición de datos de casi 4 millones de usuarios.</p>
+            </div>
+        </article>
     </div>
-   </section>
+</section>
    <section class="risks" id="risks">
     <p class="eyebrow section-label">
      04 / ANTICIPA LAS AMENAZAS
@@ -456,7 +373,7 @@ Un entorno más seguro mañana.
   </div>
 </div>
   
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/index.js"></script>
     <script src="js/index.js"></script>
     <script src="js/asistente.js"></script>
   
