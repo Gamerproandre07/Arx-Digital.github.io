@@ -26,6 +26,12 @@
     padding: 20px;
 }
 
+/* Subir ligeramente el modal */
+.arx-access-modal {
+    transform: translateY(-65px);
+}
+
+
 .arx-access-modal {
     position: relative;
     box-sizing: border-box;
@@ -146,12 +152,12 @@
 @keyframes arxModalEntrada {
     from {
         opacity: 0;
-        transform: translateY(15px) scale(0.97);
+        transform: translateY(-45px) scale(0.97);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(-65px) scale(1);
     }
 }
 
