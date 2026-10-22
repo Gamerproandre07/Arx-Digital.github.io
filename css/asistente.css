@@ -9,6 +9,7 @@
     bottom: 28px !important;
     top: auto !important;
     left: auto !important;
+    z-index: 9999 !important;
 
     width: 64px;
     height: 64px;
@@ -28,7 +29,7 @@
 
     box-shadow: 0 10px 30px rgba(7, 53, 104, 0.30);
 
-    z-index: 9000 !important;
+   
 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
