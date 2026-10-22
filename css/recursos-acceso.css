@@ -1,0 +1,172 @@
+
+/* ==========================================
+   ARX DIGITAL - MODAL DE RECURSOS
+========================================== */
+
+.arx-modal-open {
+    overflow: hidden;
+}
+
+.arx-access-overlay[hidden] {
+    display: none !important;
+}
+
+.arx-access-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(3, 22, 43, 0.70);
+    backdrop-filter: blur(5px);
+
+    padding: 20px;
+}
+
+.arx-access-modal {
+    position: relative;
+    box-sizing: border-box;
+
+    width: 100%;
+    max-width: 430px;
+    padding: 38px 30px;
+
+    background: #ffffff;
+    border-radius: 16px;
+
+    text-align: center;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.20);
+    animation: arxModalEntrada 0.25s ease;
+}
+
+.arx-access-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+
+    border: none;
+    background: transparent;
+
+    font-size: 28px;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.arx-access-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf5fa;
+    color: #006b99;
+
+    border-radius: 50%;
+    font-size: 32px;
+}
+
+.arx-access-modal h2 {
+    margin: 0 0 14px;
+
+    font-size: 24px;
+    color: #073568;
+}
+
+.arx-access-modal p {
+    margin: 0 0 26px;
+
+    font-size: 15px;
+    line-height: 1.7;
+    color: #526779;
+}
+
+.arx-access-login,
+.arx-access-register {
+    display: block;
+    padding: 14px 20px;
+
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: 600;
+
+    text-align: center;
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.arx-access-login {
+    background: #073568;
+    color: #ffffff;
+}
+
+.arx-access-login:hover {
+    background: #006b99;
+    color: #ffffff;
+}
+
+.arx-access-register {
+    margin-top: 12px;
+
+    border: 1px solid #073568;
+    background: #ffffff;
+    color: #073568;
+}
+
+.arx-access-register:hover {
+    background: #f0f7fb;
+}
+
+.arx-access-cancel {
+    display: block;
+    margin: 18px auto 0;
+
+    border: none;
+    background: transparent;
+
+    color: #64748b;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.arx-access-close:focus-visible,
+.arx-access-cancel:focus-visible,
+.arx-access-modal a:focus-visible {
+    outline: 3px solid #008ac1;
+    outline-offset: 3px;
+}
+
+@keyframes arxModalEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 480px) {
+    .arx-access-modal {
+        padding: 30px 20px;
+    }
+
+    .arx-access-modal h2 {
+        font-size: 21px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arx-access-modal {
+        animation: none;
+    }
+}
