@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
 
     const modal = document.createElement("div");
+
     modal.className = "arx-access-overlay";
     modal.hidden = true;
 
@@ -35,7 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 &times;
             </button>
 
-            <div class="arx-access-icon">
+            <div class="arx-access-icon"
+                 aria-hidden="true">
                 &#128274;
             </div>
 
@@ -67,60 +69,136 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
     `;
 
-    document.body.appendChild(modal);
+    // ==========================================
+    // UBICAR MODAL FUERA DE LOS CONTENEDORES
+    // ==========================================
 
-    const ventana = modal.querySelector(".arx-access-modal");
-    const botonCerrar = modal.querySelector(".arx-access-close");
-    const botonCancelar = modal.querySelector(".arx-access-cancel");
+    // Se añade directamente al elemento raíz HTML
+    // para evitar depender de la posición de
+    // las secciones internas de Recursos.
+
+    document.documentElement.appendChild(modal);
+
+    const ventana = modal.querySelector(
+        ".arx-access-modal"
+    );
+
+    const botonCerrar = modal.querySelector(
+        ".arx-access-close"
+    );
+
+    const botonCancelar = modal.querySelector(
+        ".arx-access-cancel"
+    );
 
     let elementoAnterior = null;
 
+    // ==========================================
+    // ABRIR MODAL
+    // ==========================================
+
     function abrirModal() {
+
         elementoAnterior = document.activeElement;
+
         modal.hidden = false;
-        document.body.classList.add("arx-modal-open");
+
+        document.body.classList.add(
+            "arx-modal-open"
+        );
+
         botonCerrar.focus();
     }
 
+    // ==========================================
+    // CERRAR MODAL
+    // ==========================================
+
     function cerrarModal() {
+
         modal.hidden = true;
-        document.body.classList.remove("arx-modal-open");
+
+        document.body.classList.remove(
+            "arx-modal-open"
+        );
 
         if (elementoAnterior?.isConnected) {
             elementoAnterior.focus();
         }
     }
 
-    botonCerrar.addEventListener("click", cerrarModal);
-    botonCancelar.addEventListener("click", cerrarModal);
+    // ==========================================
+    // EVENTOS PARA CERRAR
+    // ==========================================
+
+    botonCerrar.addEventListener(
+        "click",
+        cerrarModal
+    );
+
+    botonCancelar.addEventListener(
+        "click",
+        cerrarModal
+    );
+
+    // Cerrar haciendo clic fuera de la ventana
 
     modal.addEventListener("click", (evento) => {
+
         if (evento.target === modal) {
             cerrarModal();
         }
+
     });
 
-    document.addEventListener("keydown", (evento) => {
-        if (modal.hidden) return;
+    // ==========================================
+    // CONTROL DEL TECLADO
+    // ==========================================
 
-        if (evento.key === "Escape") {
-            cerrarModal();
+    document.addEventListener("keydown", (evento) => {
+
+        if (modal.hidden) {
+            return;
         }
 
+        // Cerrar con Escape
+        if (evento.key === "Escape") {
+            evento.preventDefault();
+            cerrarModal();
+            return;
+        }
+
+        // Mantener el foco dentro del modal
         if (evento.key === "Tab") {
-            const elementos = [...modal.querySelectorAll(
-                'button, a[href]'
-            )].filter(elemento => !elemento.disabled);
+
+            const elementos = [
+                ...ventana.querySelectorAll(
+                    'button:not([disabled]), a[href]'
+                )
+            ];
+
+            if (elementos.length === 0) {
+                evento.preventDefault();
+                ventana.focus();
+                return;
+            }
 
             const primero = elementos[0];
-            const ultimo = elementos[elementos.length - 1];
 
-            if (evento.shiftKey &&
-                document.activeElement === primero) {
+            const ultimo =
+                elementos[elementos.length - 1];
+
+            if (
+                evento.shiftKey &&
+                document.activeElement === primero
+            ) {
                 evento.preventDefault();
                 ultimo.focus();
-            } else if (!evento.shiftKey &&
-                document.activeElement === ultimo) {
+
+            } else if (
+                !evento.shiftKey &&
+                document.activeElement === ultimo
+            ) {
                 evento.preventDefault();
                 primero.focus();
             }
@@ -128,73 +206,116 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================
-    // CONTROL DE ACCESO A RECURSOS
+    // INICIALIZAR SUPABASE
     // ==========================================
 
     let cliente = null;
 
-    if (window.supabase) {
+    if (
+        window.supabase &&
+        typeof window.supabase.createClient === "function"
+    ) {
+
         cliente = window.supabase.createClient(
             SUPABASE_URL,
             SUPABASE_KEY
         );
+
     } else {
-        console.error("No se pudo cargar Supabase.");
+
+        console.error(
+            "ARX DIGITAL: No se pudo cargar Supabase."
+        );
     }
+
+    // ==========================================
+    // IDENTIFICAR LOS ENLACES DE RECURSOS
+    // ==========================================
 
     const enlaces = document.querySelectorAll(
         "#recursos .resource a.text-link"
     );
 
+    // ==========================================
+    // VERIFICAR SESIÓN ANTES DE ACCEDER
+    // ==========================================
+
     enlaces.forEach((enlace) => {
 
-        enlace.addEventListener("click", async (evento) => {
+        enlace.addEventListener(
+            "click",
+            async (evento) => {
 
-            evento.preventDefault();
+                // Detener navegación original
+                evento.preventDefault();
 
-            if (enlace.dataset.verificando === "true") {
-                return;
-            }
-
-            enlace.dataset.verificando = "true";
-
-            try {
-                if (!cliente) {
-                    throw new Error("Supabase no disponible");
-                }
-
-                // Verificar usuario con Supabase Auth.
-                const { data, error } =
-                    await cliente.auth.getUser();
-
-                if (error || !data?.user) {
-                    abrirModal();
+                if (
+                    enlace.dataset.verificando === "true"
+                ) {
                     return;
                 }
 
-                // Usuario autenticado:
-                // permitir acceso al recurso.
-                const destino = enlace.href;
+                enlace.dataset.verificando = "true";
 
-                if (destino.startsWith("https://") ||
-                    destino.startsWith("http://")) {
-                    window.location.assign(destino);
+                try {
+
+                    if (!cliente) {
+                        throw new Error(
+                            "Supabase no disponible"
+                        );
+                    }
+
+                    // Verificar usuario autenticado
+                    const { data, error } =
+                        await cliente.auth.getUser();
+
+                    if (error || !data?.user) {
+
+                        // Sin sesión: mostrar modal
+                        abrirModal();
+                        return;
+                    }
+
+                    // ==================================
+                    // USUARIO CON SESIÓN INICIADA
+                    // ==================================
+
+                    const destino = enlace.href;
+
+                    const url = new URL(
+                        destino,
+                        window.location.href
+                    );
+
+                    // Evitar protocolos inseguros
+                    if (
+                        url.protocol !== "https:" &&
+                        url.protocol !== "http:"
+                    ) {
+                        throw new Error(
+                            "Enlace no permitido"
+                        );
+                    }
+
+                    // Acceder al recurso
+                    window.location.assign(url.href);
+
+                } catch (error) {
+
+                    console.error(
+                        "ARX DIGITAL - Error de acceso:",
+                        error
+                    );
+
+                    abrirModal();
+
+                } finally {
+
+                    enlace.dataset.verificando = "false";
+
                 }
-
-            } catch (error) {
-
-                console.error(
-                    "Error verificando acceso:",
-                    error
-                );
-
-                abrirModal();
-
-            } finally {
-                enlace.dataset.verificando = "false";
             }
-
-        });
+        );
     });
 
 });
