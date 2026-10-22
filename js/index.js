@@ -1,5 +1,208 @@
 "use strict";
 
+// ==========================================
+// SUPABASE - SESIÓN DEL USUARIO
+// ==========================================
+
+const SUPABASE_URL =
+    "https://ipxswlfragitdknatffc.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_UwSZ_MRdeUDhwyOVFd-ldQ_VIaHm8b1";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    const loginLink =
+        document.getElementById("loginLink");
+
+    const userButton =
+        document.getElementById("userButton");
+
+    const userDropdown =
+        document.getElementById("userDropdown");
+
+    const navUserName =
+        document.getElementById("navUserName");
+
+    const navUserEmail =
+        document.getElementById("navUserEmail");
+
+    const dropdownUserName =
+        document.getElementById("dropdownUserName");
+
+    const dropdownUserEmail =
+        document.getElementById("dropdownUserEmail");
+
+    const logoutButton =
+        document.getElementById("logoutButton");
+
+
+    // ==========================================
+    // COMPROBAR SESIÓN
+    // ==========================================
+
+    const {
+        data: { session },
+        error
+    } = await supabaseClient.auth.getSession();
+
+
+    if (error) {
+        console.error(
+            "Error al comprobar la sesión:",
+            error
+        );
+        return;
+    }
+
+
+    // ==========================================
+    // NO HAY SESIÓN
+    // ==========================================
+
+    if (!session) {
+
+        if (loginLink) {
+            loginLink.hidden = false;
+        }
+
+        if (userButton) {
+            userButton.hidden = true;
+        }
+
+        return;
+    }
+
+
+    // ==========================================
+    // HAY UNA SESIÓN
+    // ==========================================
+
+    const usuario = session.user;
+
+    const nombre =
+        usuario.user_metadata?.nombre_completo ||
+        usuario.email?.split("@")[0] ||
+        "Usuario";
+
+    const correo =
+        usuario.email || "";
+
+
+    // Mostrar datos en el menú
+    if (navUserName) {
+        navUserName.textContent = nombre;
+    }
+
+    if (navUserEmail) {
+        navUserEmail.textContent = correo;
+    }
+
+    if (dropdownUserName) {
+        dropdownUserName.textContent = nombre;
+    }
+
+    if (dropdownUserEmail) {
+        dropdownUserEmail.textContent = correo;
+    }
+
+
+    // Ocultar Acceso
+    if (loginLink) {
+        loginLink.hidden = true;
+    }
+
+    // Mostrar usuario
+    if (userButton) {
+        userButton.hidden = false;
+    }
+
+
+    // ==========================================
+    // ABRIR / CERRAR MENÚ
+    // ==========================================
+
+    if (userButton && userDropdown) {
+
+        userButton.addEventListener("click", function (evento) {
+
+            evento.stopPropagation();
+
+            const abierto =
+                !userDropdown.hidden;
+
+            userDropdown.hidden = abierto;
+
+            userButton.setAttribute(
+                "aria-expanded",
+                String(!abierto)
+            );
+
+        });
+
+
+        document.addEventListener("click", function (evento) {
+
+            if (
+                !userDropdown.hidden &&
+                !userDropdown.contains(evento.target) &&
+                !userButton.contains(evento.target)
+            ) {
+
+                userDropdown.hidden = true;
+
+                userButton.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+            }
+
+        });
+
+    }
+
+
+    // ==========================================
+    // CERRAR SESIÓN
+    // ==========================================
+
+    if (logoutButton) {
+
+        logoutButton.addEventListener("click", async function () {
+
+            logoutButton.disabled = true;
+            logoutButton.textContent = "Cerrando sesión...";
+
+            const { error } =
+                await supabaseClient.auth.signOut();
+
+            if (error) {
+
+                console.error(
+                    "Error al cerrar sesión:",
+                    error
+                );
+
+                logoutButton.disabled = false;
+                logoutButton.textContent = "Cerrar sesión";
+
+                return;
+            }
+
+            window.location.replace("index.html");
+
+        });
+
+    }
+
+});
 
 // ARX DIGITAL - INTERACCIONES Y ANIMACIONES
 
