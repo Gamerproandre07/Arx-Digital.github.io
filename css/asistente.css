@@ -4,9 +4,11 @@
 
 /* Botón flotante */
 .arx-ai-button {
-    position: fixed;
-    right: 28px;
-    bottom: 28px;
+    position: fixed !important;
+    right: 28px !important;
+    bottom: 28px !important;
+    top: auto !important;
+    left: auto !important;
 
     width: 64px;
     height: 64px;
@@ -26,7 +28,7 @@
 
     box-shadow: 0 10px 30px rgba(7, 53, 104, 0.30);
 
-    z-index: 9000;
+    z-index: 9000 !important;
 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -42,13 +44,17 @@
    ========================================= */
 
 .arx-ai-chat {
-    position: fixed;
+    position: fixed !important;
 
-    right: 28px;
-    bottom: 105px;
+    right: 28px !important;
+    bottom: 105px !important;
+    top: auto !important;
+    left: auto !important;
 
     width: 370px;
     height: 520px;
+    max-height: calc(100dvh - 125px);
+    box-sizing: border-box;
 
     background: white;
 
@@ -57,7 +63,7 @@
 
     box-shadow: 0 20px 60px rgba(7, 53, 104, 0.25);
 
-    z-index: 9000;
+    z-index: 9000 !important;
 
     display: flex;
     flex-direction: column;
@@ -331,10 +337,10 @@
 @media (max-width: 500px) {
 
     .arx-ai-chat {
-        right: 12px;
-        left: 12px;
+        right: 12px !important;
+        left: 12px !important;
 
-        bottom: 90px;
+        bottom: 90px !important;
 
         width: auto;
 
@@ -342,8 +348,8 @@
     }
 
     .arx-ai-button {
-        right: 18px;
-        bottom: 18px;
+        right: 18px !important;
+        bottom: 18px !important;
 
         width: 58px;
         height: 58px;
