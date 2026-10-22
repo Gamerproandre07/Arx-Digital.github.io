@@ -3,18 +3,33 @@
    ARX DIGITAL - MODAL DE RECURSOS
 ========================================== */
 
-.arx-modal-open {
-    overflow: hidden;
+/* Bloquear desplazamiento al abrir el modal */
+body.arx-modal-open {
+    overflow: hidden !important;
 }
 
+/* Ocultar correctamente el modal */
 .arx-access-overlay[hidden] {
     display: none !important;
 }
 
+/* ==========================================
+   FONDO OSCURO Y CENTRADO EN PANTALLA
+========================================== */
+
 .arx-access-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+
+    z-index: 99999 !important;
 
     display: flex;
     justify-content: center;
@@ -24,21 +39,28 @@
     backdrop-filter: blur(5px);
 
     padding: 20px;
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
-/* Subir ligeramente el modal */
-.arx-access-modal {
-    transform: translateY(-65px);
-}
-
+/* ==========================================
+   VENTANA PRINCIPAL DEL MODAL
+========================================== */
 
 .arx-access-modal {
     position: relative;
     box-sizing: border-box;
 
+    flex-shrink: 0;
+
     width: 100%;
     max-width: 430px;
+
     padding: 38px 30px;
+
+    margin: auto;
 
     background: #ffffff;
     border-radius: 16px;
@@ -46,11 +68,17 @@
     text-align: center;
 
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.20);
-    animation: arxModalEntrada 0.25s ease;
+
+    animation: arxModalEntrada 0.25s ease both;
 }
+
+/* ==========================================
+   BOTÓN DE CERRAR (X)
+========================================== */
 
 .arx-access-close {
     position: absolute;
+
     top: 12px;
     right: 16px;
 
@@ -59,12 +87,23 @@
 
     font-size: 28px;
     color: #64748b;
+
     cursor: pointer;
+    transition: color 0.2s ease;
 }
+
+.arx-access-close:hover {
+    color: #073568;
+}
+
+/* ==========================================
+   ICONO DEL CANDADO
+========================================== */
 
 .arx-access-icon {
     width: 72px;
     height: 72px;
+
     margin: 0 auto 20px;
 
     display: flex;
@@ -78,10 +117,16 @@
     font-size: 32px;
 }
 
+/* ==========================================
+   TÍTULO Y DESCRIPCIÓN
+========================================== */
+
 .arx-access-modal h2 {
     margin: 0 0 14px;
 
     font-size: 24px;
+    font-weight: 700;
+
     color: #073568;
 }
 
@@ -90,24 +135,32 @@
 
     font-size: 15px;
     line-height: 1.7;
+
     color: #526779;
 }
+
+/* ==========================================
+   BOTONES DE ACCESO
+========================================== */
 
 .arx-access-login,
 .arx-access-register {
     display: block;
+
     padding: 14px 20px;
 
     border-radius: 7px;
+
     font-size: 15px;
     font-weight: 600;
 
     text-align: center;
     text-decoration: none;
 
-    transition: 0.2s ease;
+    transition: all 0.2s ease;
 }
 
+/* Botón iniciar sesión */
 .arx-access-login {
     background: #073568;
     color: #ffffff;
@@ -118,20 +171,28 @@
     color: #ffffff;
 }
 
+/* Botón crear cuenta */
 .arx-access-register {
     margin-top: 12px;
 
     border: 1px solid #073568;
+
     background: #ffffff;
     color: #073568;
 }
 
 .arx-access-register:hover {
     background: #f0f7fb;
+    color: #073568;
 }
+
+/* ==========================================
+   BOTÓN AHORA NO
+========================================== */
 
 .arx-access-cancel {
     display: block;
+
     margin: 18px auto 0;
 
     border: none;
@@ -139,8 +200,18 @@
 
     color: #64748b;
     font-size: 14px;
+
     cursor: pointer;
 }
+
+.arx-access-cancel:hover {
+    color: #073568;
+    text-decoration: underline;
+}
+
+/* ==========================================
+   ACCESIBILIDAD DEL TECLADO
+========================================== */
 
 .arx-access-close:focus-visible,
 .arx-access-cancel:focus-visible,
@@ -149,19 +220,31 @@
     outline-offset: 3px;
 }
 
+/* ==========================================
+   ANIMACIÓN CENTRADA
+========================================== */
+
 @keyframes arxModalEntrada {
     from {
         opacity: 0;
-        transform: translateY(-45px) scale(0.97);
+        transform: scale(0.95);
     }
 
     to {
         opacity: 1;
-        transform: translateY(-65px) scale(1);
+        transform: scale(1);
     }
 }
 
+/* ==========================================
+   ADAPTACIÓN A CELULARES
+========================================== */
+
 @media (max-width: 480px) {
+    .arx-access-overlay {
+        padding: 15px;
+    }
+
     .arx-access-modal {
         padding: 30px 20px;
     }
@@ -169,7 +252,20 @@
     .arx-access-modal h2 {
         font-size: 21px;
     }
+
+    .arx-access-modal p {
+        font-size: 14px;
+    }
+
+    .arx-access-login,
+    .arx-access-register {
+        font-size: 14px;
+    }
 }
+
+/* ==========================================
+   REDUCIR ANIMACIONES SI SE SOLICITA
+========================================== */
 
 @media (prefers-reduced-motion: reduce) {
     .arx-access-modal {
