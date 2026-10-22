@@ -421,3 +421,230 @@ input[type="checkbox"] { accent-color: #007c99; }
 .modal-form button.button:hover {
   background-color: #073568;
 }
+
+/* ==========================================
+   MENÚ DE USUARIO - ARX DIGITAL
+   ========================================== */
+
+.user-menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+
+/* Botón Acceso cuando no hay sesión */
+
+.user-menu .login-link {
+    border: 1px solid #073568;
+    padding: 7px 17px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.user-menu .login-link:hover {
+    background: #073568;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+/* Botón del usuario */
+
+.user-button {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 7px 10px;
+
+    border: 1px solid #afcddd;
+    border-radius: 6px;
+
+    background: #ffffff;
+    color: #073568;
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+.user-button:hover {
+    background: #edf8fa;
+}
+
+
+/* Icono */
+
+.user-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    background: #edf8fa;
+    border-radius: 50%;
+
+    font-size: 16px;
+}
+
+
+/* Nombre y correo */
+
+.user-button-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    max-width: 180px;
+}
+
+.user-button-info strong {
+    max-width: 100%;
+
+    color: #073568;
+
+    font-size: 12px;
+    line-height: 1.3;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-button-info small {
+    max-width: 100%;
+
+    color: #526779;
+
+    font-size: 10px;
+    line-height: 1.3;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.user-arrow {
+    margin-left: 3px;
+    font-size: 11px;
+}
+
+
+/* ==========================================
+   DESPLEGABLE
+   ========================================== */
+
+.user-dropdown {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+
+    width: 260px;
+
+    padding: 8px;
+
+    background: #ffffff;
+
+    border: 1px solid #d6e6ee;
+    border-radius: 8px;
+
+    box-shadow:
+        0 14px 35px rgba(7, 53, 104, 0.16);
+
+    z-index: 10000;
+}
+
+
+/* Datos dentro del menú */
+
+.user-dropdown-header {
+    display: flex;
+    flex-direction: column;
+
+    padding: 12px;
+}
+
+.user-dropdown-header strong {
+    color: #073568;
+    font-size: 14px;
+}
+
+.user-dropdown-header span {
+    margin-top: 3px;
+
+    color: #526779;
+    font-size: 11px;
+
+    overflow-wrap: anywhere;
+}
+
+
+.user-dropdown-divider {
+    height: 1px;
+
+    margin: 3px 0;
+
+    background: #d6e6ee;
+}
+
+
+/* Cerrar sesión */
+
+.logout-button {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: transparent;
+
+    color: #073568;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background: #edf8fa;
+}
+
+
+/* Mantener funcionamiento de hidden */
+
+.user-menu [hidden] {
+    display: none !important;
+}
+
+
+/* ==========================================
+   MÓVIL
+   ========================================== */
+
+@media (max-width: 560px) {
+
+    .user-button-info small {
+        display: none;
+    }
+
+    .user-button-info {
+        max-width: 110px;
+    }
+
+    .user-dropdown {
+        width: 240px;
+        right: 0;
+    }
+
+}
