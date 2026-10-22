@@ -33,9 +33,55 @@
      <a href="Contacto.html">
       Contacto
      </a>
-     <a href="login.html">
-      Acceso
-     </a>
+     <!-- ACCESO / CUENTA DEL USUARIO -->
+<div class="user-menu" id="userMenu">
+
+    <!-- Se muestra cuando NO hay sesión -->
+    <a href="login.html" class="login-link" id="loginLink">
+        Acceso
+    </a>
+
+    <!-- Se muestra cuando SÍ hay sesión -->
+    <button
+        type="button"
+        class="user-button"
+        id="userButton"
+        aria-expanded="false"
+        hidden
+    >
+        <span class="user-avatar">👤</span>
+
+        <span class="user-button-info">
+            <strong id="navUserName">Usuario</strong>
+            <small id="navUserEmail">correo@ejemplo.com</small>
+        </span>
+
+        <span class="user-arrow">▾</span>
+    </button>
+
+    <!-- MENÚ DESPLEGABLE -->
+    <div class="user-dropdown" id="userDropdown" hidden>
+
+        <div class="user-dropdown-header">
+            <strong id="dropdownUserName">Usuario</strong>
+            <span id="dropdownUserEmail">
+                correo@ejemplo.com
+            </span>
+        </div>
+
+        <div class="user-dropdown-divider"></div>
+
+        <button
+            type="button"
+            class="logout-button"
+            id="logoutButton"
+        >
+            Cerrar sesión
+        </button>
+
+    </div>
+
+</div>
     </nav>
    </div>
   </header>
